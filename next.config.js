@@ -8,7 +8,7 @@ module.exports = {
       FOOTER_DESC:
         ' Metadesk provides latest crypto news from all over the world. Get breaking news alerts in field of politics, bollywood, hollywood and other social news by subscribing us.',
     },
-    apiUrl: 'https://social-media-fs4.herokuapp.com/api',
+    apiUrl: 'https://fwd.thenwg.xyz',
 
     home: {
       heroSection: {

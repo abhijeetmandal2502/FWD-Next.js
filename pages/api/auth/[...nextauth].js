@@ -13,7 +13,7 @@ export default NextAuth({
 
         const url = `https://fwd.thenwg.xyz/?rest_route=/auth/v1/auth&AUTH_KEY=${process.env.authKey}`;
 
-        console.log('authlogin 2', url);
+        console.log('authlogin 2', credentials);
 
         const response = await fetch(url, {
           method: 'post',
