@@ -1,6 +1,7 @@
 import '../styles/globals.css';
 import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
+import { SnackbarProvider } from 'notistack';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   // return <Component {...pageProps} />
@@ -8,17 +9,20 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <>
       <SessionProvider session={session} refetchInterval={5 * 60}>
-        <Head>
-          <meta charSet="UTF-8" />
-          <link rel="shortcut icon" href="/favicon/favicon.ico" />
-        </Head>
-        {/* <Fonts /> */}
-        {/* <ChakraProvider theme={customTheme}> */}
-        {/* <CSSReset /> */}
-        {/* <NavBar /> */}
-        <Component {...pageProps} />
-        {/* <MobileFooter /> */}
-        {/* </ChakraProvider> */}
+        <SnackbarProvider
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          // TransitionComponent={Grow}
+        >
+          <Head>
+            <meta charSet="UTF-8" />
+            <link rel="shortcut icon" href="/favicon/favicon.ico" />
+          </Head>
+
+          <Component {...pageProps} />
+        </SnackbarProvider>
       </SessionProvider>
     </>
   );
