@@ -5,8 +5,8 @@ import styles from '../styles/Home.module.css';
 const Home = () => {
   return (
     <>
-      <div className=" mb-6  mx-4 md:mx-8 lg:mx-48">
-        <div className=" p-4 bg-white rounded-full flex items-center justify-between space-x-6">
+      <div className=" my-6  mx-4 md:mx-8 lg:mx-48">
+        <div className="p-4 bg-white rounded-full flex items-center justify-between space-x-6">
           <div>
             <h2 className="text-2xl font-bold ">Deepstash</h2>
           </div>
@@ -30,7 +30,7 @@ const Home = () => {
             </form>
           </div>
 
-          <a href='#'>
+          <a href='/add-source'>
             <div className='flex bg-orange-400 text-white rounded-3xl px-4 py-2'>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
