@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LoginForm = () => {
+const CopyLogin = () => {
     return (
         <div className=" my-8 sm:mx-1 md:mx-10 lg:mx-20 xl:mx-48   p-4 ">
 
@@ -44,4 +44,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default CopyLogin
