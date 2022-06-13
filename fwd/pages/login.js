@@ -38,16 +38,13 @@ const Login = () => {
     // reset();
   };
 
-
-  const registersubmit=()=>{
-
-     const url = `${process.env.apiUrl}/auth/register`;
+  const registersubmit = async () => {
+    const url = `${process.env.apiUrl}/auth/register`;
     const response = await fetch(url, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
-},
-      
+      },
 
       body: JSON.stringify({
         nickName: data.nickName,
@@ -100,8 +97,7 @@ const Login = () => {
         }
       }
     }
-
-  }
+  };
 
   return (
     <div className=" my-8 sm:mx-1 md:mx-10 lg:mx-20 xl:mx-48   p-4 ">
