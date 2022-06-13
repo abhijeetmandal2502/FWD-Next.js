@@ -12,7 +12,7 @@ const Home = () => {
     <>
       <div className=" my-6 mx-48 p-4 bg-white rounded-full flex items-center justify-between space-x-6">
         <div>
-          <h2 className="text-2xl font-bold ">Deepstash</h2>
+          <h2 className="text-2xl font-bold ">FWD</h2>
         </div>
         <div className="w-full">
           <form class="flex items-center  ">
