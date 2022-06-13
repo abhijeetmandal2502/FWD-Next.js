@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
-import { useSession, signIn, signOut, getSession, reg } from 'next-auth/react';
+// import { useSession, signIn, signOut, getSession, reg } from 'next-auth/react';
 import Login from './login';
 import Register from './register';
 

@@ -5,13 +5,16 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 import { useSession, signIn, signOut, getSession, reg } from 'next-auth/react';
 import { useSnackbar } from 'notistack';
+// import { useSession, getSession } from 'next-auth/react';
 
 const Login = (props) => {
   const { setShowLoginModal } = props;
-
   const router = useRouter();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { data: session } = useSession();
+  //  const token = session.user.access_token;
 
+  console.log('checksession', session);
   const schema = yup.object().shape({
     email: yup.string().required(),
     password: yup.string().min(2).max(32).required(),
