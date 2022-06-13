@@ -1,8 +1,13 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
+import { useSession, signIn, signOut, getSession, reg } from 'next-auth/react';
 
 const Home = () => {
+  const { data: session, status } = useSession();
+  const token = session && session?.user?.data?.jwt;
+
+  console.log('checkauth', token);
   return (
     <>
       <div className=" my-6 mx-48 p-4 bg-white rounded-full flex items-center justify-between space-x-6">
