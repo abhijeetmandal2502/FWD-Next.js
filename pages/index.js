@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import { useSession, signIn, signOut, getSession, reg } from 'next-auth/react';
 import Link from 'next/link';
+import AuthButton from '../components/AuthButton';
 
 const Home = () => {
   const { data: session, status } = useSession();
@@ -80,6 +81,8 @@ const Home = () => {
             <p className="ml-2">Create</p>
           </div>
         </Link>
+
+        <AuthButton />
       </div>
     </>
   );

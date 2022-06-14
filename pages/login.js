@@ -48,6 +48,7 @@ const Login = (props) => {
         variant: 'success',
         autoHideDuration: 3000,
       });
+      setShowLoginModal(false);
       router.push('/');
 
       console.log('loginApisuccess', result);

@@ -35,21 +35,26 @@ const Register = (props) => {
     const url = 'https://fwd.thenwg.xyz/?rest_route=/auth/v1/users';
     // `${process.env.apiUrl}/auth/register`;
     console.log('checkregister', '1');
-    await fetch(url, {
-      method: 'post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
+    await fetch(
+      url,
+      {
+        method: 'post',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
 
-      body: JSON.stringify({
-        user_login: data.user_login,
-        first_name: data.first_name,
-        email: data.email,
-        password: data.password,
-        AUTH_KEY: process.env.authKey,
-      }),
-    })
+        body: JSON.stringify({
+          user_login: data.user_login,
+          first_name: data.first_name,
+          email: data.email,
+          password: data.password,
+          AUTH_KEY: process.env.authKey,
+        }),
+      }
+      // { mode: 'no-cors' }
+    )
       .then((response) => {
         var result = response.json();
         console.log('checkregister  2', result);
@@ -69,7 +74,7 @@ const Register = (props) => {
             router.push('/');
           })
           .catch((error) => {
-            enqueueSnackbar('failed to registered', {
+            enqueueSnackbar('Failed to register', {
               variant: 'error',
               autoHideDuration: 3000,
             });
@@ -81,7 +86,7 @@ const Register = (props) => {
           variant: 'error',
           autoHideDuration: 3000,
         });
-        console.log('checkregister  9', 'something went wrong!');
+        console.log('checkregister  9', error);
       });
   };
 
@@ -94,7 +99,7 @@ const Register = (props) => {
 
           <div className="flex  justify-between p-5 border-b border-solid border-slate-200 rounded-t">
             <span>
-              <div className="flex">
+              {/* <div className="flex">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-6 w-6 text-fuchsia-900"
@@ -110,7 +115,7 @@ const Register = (props) => {
                   />
                 </svg>
                 <p className="font-bold text-fuchsia-900">Back</p>
-              </div>
+              </div> */}
               <h3 className="text-3xl font-bold">Create account</h3>
             </span>
 
@@ -220,6 +225,7 @@ const Register = (props) => {
           </div>
         </div>
       </div>
+      {/* <div className="opacity-25 fixed inset-0 z-40 bg-black"></div> */}
     </div>
   );
 };
