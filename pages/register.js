@@ -69,7 +69,7 @@ const Register = (props) => {
             router.push('/');
           })
           .catch((error) => {
-            enqueueSnackbar('failde to registered', {
+            enqueueSnackbar('failed to registered', {
               variant: 'error',
               autoHideDuration: 3000,
             });

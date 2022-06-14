@@ -94,6 +94,7 @@ const CreatePost = () => {
   return (
     <div className=" mb-6  mx-4 md:mx-8 lg:mx-48">
       <div className="p-4 bg-red-50 shadow-2xl rounded-b-2xl flex items-center justify-between space-x-6">
+        {/* <Link href="/"> */}
         <div className="flex">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -111,6 +112,7 @@ const CreatePost = () => {
           </svg>
           <p className="font-bold text-fuchsia-900">Back</p>
         </div>
+        {/* </Link> */}
         <div
           className="flex bg-stone-500 text-white rounded-3xl px-4 py-2"
           onClick={() => {
