@@ -1,6 +1,9 @@
 import React from 'react'
 
 const AddSource = () => {
+
+    const collection = [1, 2, 3, 4]
+
     return (
         <div className=" mb-6  mx-4 md:mx-8 lg:mx-48">
             <div className="p-4 bg-red-50 shadow-2xl rounded-b-2xl flex items-center justify-between space-x-6">
@@ -15,7 +18,7 @@ const AddSource = () => {
                     </div>
                 </a>
 
-                <div className='flex bg-stone-500 text-white rounded-3xl px-4 py-1 items-center'>
+                <div className='flex bg-graytype text-white rounded-3xl px-4 py-1 items-center'>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
@@ -43,7 +46,7 @@ const AddSource = () => {
                         </div>
                         <div className='p-4' >
                             <div className='flex justify-between'>
-                                <input type='text' className='font-bold w-full text-2xl border-0 focus:border-0 ' placeholder='Title of the idea' />
+                                <input type='text' className='font-bold w-full text-2xl border-0 focus:border-0 focus:ring-0 ' placeholder='Title of the idea' />
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                                 </svg>
@@ -110,7 +113,7 @@ const AddSource = () => {
                             </div>
                             <div className='p-4' >
                                 <div className='flex justify-between'>
-                                    <input type='text' className='font-bold w-full text-2xl border-0 focus:border-0 ' placeholder='Title of the idea' />
+                                    <input type='text' className='font-bold w-full text-2xl border-0 focus:border-0 focus:ring-0 ' placeholder='Title of the idea' />
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                                     </svg>
