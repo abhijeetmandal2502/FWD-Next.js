@@ -83,7 +83,7 @@ async function authHeader(context) {
   // const token = await getToken({ req });
   // console.log('JSON Web Token', token);
 
-  console.log('apicall 9', token);
+  // console.log('apicall 9', token);
   return {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -106,14 +106,13 @@ async function handleResponse(response) {
   return response.text().then((text) => {
     const data = text && JSON.parse(text);
 
-    console.log('apicall11', data);
+    // console.log('apicall11', data);
 
     if (!response.ok) {
       if ([401, 403].includes(response.status)) {
         // auto logout if 401 Unauthorized or 403 Forbidden response returned from api
         // userService.logout();
-
-        console.log('checkfirstloginerror', data);
+        // console.log('checkfirstloginerror', data);
       }
 
       const error = (data && data.message) || response.statusText;

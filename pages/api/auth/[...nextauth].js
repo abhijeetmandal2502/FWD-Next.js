@@ -9,11 +9,12 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
-        console.log('authlogin 1', process.env.authKey);
+        // console.log('authlogin 1', process.env.authKey);
 
-        const url = `https://fwd.thenwg.xyz/?rest_route=/auth/v1/auth&AUTH_KEY=${process.env.authKey}`;
+        const url = 'https://fwd.thenwg.xyz/wp-json/jwt-auth/v1/token';
+        // `https://fwd.thenwg.xyz/?rest_route=/auth/v1/auth&AUTH_KEY=${process.env.authKey}`;
 
-        console.log('authlogin 2', credentials);
+        // console.log('authlogin 2', credentials);
 
         const response = await fetch(url, {
           method: 'post',
@@ -22,12 +23,12 @@ export default NextAuth({
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            email: credentials.email,
+            username: credentials.email,
             password: credentials.password,
           }),
         });
 
-        console.log('authlogin 3', response);
+        // console.log('authlogin 3', response);
 
         //  var res = await fetchWrapper.postJWT(
         //    url,
@@ -51,25 +52,29 @@ export default NextAuth({
         //     }),
         //   }
         // );
-        const result = await response.json();
 
-        console.log('authlogin 4', result);
+        console.log('authlogin 4', response);
 
-        if (result.success) {
+        if (response.status == 403) {
+          const result = await response.json();
+          console.log('authlogin 5', result);
+          throw new Error(result.message);
           // const session = await getSession({ data });
           // console.log('logindata= session', session);
           // router.push('/');
-          console.log('authlogin 5', result);
 
-          return result;
+          // return result;
         } else {
+          const result = await response.json();
+          return result;
+
           console.log('authlogin 6', result);
 
-          if (result.errors) {
-            throw new Error(result.data.message);
-          } else {
-            throw new Error(result.data.message);
-          }
+          // if (result.errors) {
+          //   throw new Error(result.data.message);
+          // } else {
+          // throw new Error(result.data.message);
+          // }
           // console.log('logindata=  I will handle this later!');
         }
       },
@@ -90,7 +95,7 @@ export default NextAuth({
       if (token) {
         session.user = token.user;
       }
-      return session;
+      return token;
     },
   },
   secret: 'honey_nwg_projects',
