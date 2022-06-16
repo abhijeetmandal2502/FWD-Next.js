@@ -145,6 +145,16 @@ const AddSource = () => {
                                                             </svg>
                                                         </div>
 
+                                                        <div className='flex space-x-4'>
+                                                            <div className='flex space-x-2 items-center bg-white rounded-3xl px-3'>
+                                                                <p>😎</p>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                                                </svg>
+                                                            </div>
+                                                            <input type="text" placeholder='What do unicorns smell like?' className="rounded-3xl w-full border-0 focus:border-0 focus:ring-0" />
+                                                        </div>
+
                                                     </label>
                                                     <button className="mt-2 px-6 py-2 bg-graytype font-bold text-white rounded-3xl">
                                                         Continue
