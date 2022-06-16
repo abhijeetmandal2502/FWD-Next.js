@@ -12,7 +12,8 @@ module.exports = {
       black: '#F2EFEB',
       btnorange: '#ff8a4c',
       graytype: '#a19f9d',
-      whitetype: '#faf7f3'
+      whitetype: '#faf7f3',
+      white: 'fff',
     },
 
 

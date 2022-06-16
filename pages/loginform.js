@@ -67,7 +67,7 @@ export default function LoginForm() {
                                                 invalid:border-fuchsia-900 invalid:text-fuchsia-900
                                                 focus:invalid:border-fuchsia-900 focus:invalid:ring-fuchsia-900" />
                                         </label>
-                                        <button class="w-full px-3 py-2 bg-fuchsia-900 font-bold text-white rounded-3xl">
+                                        <button class="w-full px-3 py-2 bg-graytype font-bold text-white rounded-3xl">
                                             Sign In
                                         </button>
                                     </form>
@@ -158,7 +158,7 @@ export default function LoginForm() {
                                             <a href="#">Terms of Service & Privacy Policy</a>
                                         </div>
 
-                                        <button class="w-full px-3 py-2 bg-fuchsia-900 font-bold text-white rounded-3xl">
+                                        <button class="w-full px-3 py-2 bg-graytype font-bold text-white rounded-3xl">
                                             Sign In
                                         </button>
                                     </form>
