@@ -18,7 +18,7 @@ const AddsingleSource = () => {
                     </div>
                 </a>
 
-                <div onClick={() => setShowModal(true)} className='flex bg-graytype text-white rounded-3xl px-4 py-1 items-center'>
+                <div onClick={() => setShowModal(true)} className=' bg-red flex bg-graytype text-white rounded-3xl px-4 py-1 items-center'>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
@@ -30,91 +30,91 @@ const AddsingleSource = () => {
                 {/* modal */}
                 {showModal ? (
                     <>
-                        <div className=" justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                            <div className="relative w-full my-6 mx-4  md:mx-40 max-w-2xl">
+                        <div className=" justify-center items-center flex overflow-x-hidden  ml-0 overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                            <div className="relative w-full my-6 mx-4 md:mx-40 max-w-2xl">
                                 {/*content*/}
-                                <div>
-                                    <div className="border-0 rounded-t-lg shadow-lg relative flex flex-col w-full bg-whitetype outline-none focus:outline-none">
-                                        {/*header*/}
+                                {/* <div> */}
+                                <div className="border-0 rounded-t-lg shadow-lg relative flex flex-col w-full bg-whitetype outline-none focus:outline-none">
+                                    {/*header*/}
 
-                                        <div className="flex items-center justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                                            <h3 className="text-3xl font-bold">
-                                                Preview
-                                            </h3>
+                                    <div className="flex items-center justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                                        <h3 className="text-3xl font-bold">
+                                            Preview
+                                        </h3>
 
-                                            <span className="block text-3xl font-bold" onClick={() => setShowModal(false)}>
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                                </svg>
-                                            </span>
+                                        <span className="block text-3xl font-bold" onClick={() => setShowModal(false)}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                            </svg>
+                                        </span>
+                                    </div>
+
+                                    {/*body*/}
+                                    <div className="relative p-6 flex-auto">
+
+                                        <div className='flex space-x-2'>
+                                            <img className='w-8 rounded-full' src='https://deepstash.com/_next/image?url=https%3A%2F%2Fstatic.deepstash.com%2Fprofile%2F1.png&w=1920&q=75' />
+                                            <p>@trishamistri</p>
                                         </div>
 
-                                        {/*body*/}
-                                        <div className="relative p-6 flex-auto">
+                                        <form>
 
-                                            <div className='flex space-x-2'>
-                                                <img className='w-8 rounded-full' src='https://deepstash.com/_next/image?url=https%3A%2F%2Fstatic.deepstash.com%2Fprofile%2F1.png&w=1920&q=75' />
-                                                <p>@trishamistri</p>
-                                            </div>
+                                            <textarea id="message" rows="4" className="mt-4  px-4 w-full rounded-md text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Your message..."></textarea>
 
-                                            <form  >
-
-                                                <textarea id="message" rows="4" className="mt-4  px-4 w-full rounded-md text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Your message..."></textarea>
-
-                                                <div className='flex my-6'>
-                                                    <svg class="sc-hBEYId fIZqVx w-24" viewBox="0 0 168 96">
-                                                        <path d="M46.33 22.214c2.21.23 4.378.763 6.442 1.585 2.037.815 3.85 1.988 5.693 3.158 3.724 2.363 7.468 4.707 11.388 6.741 3.972 2.055 8.147 3.837 12.543 4.75 4.236.88 8.66.867 12.78-.55a22.536 22.536 0 0 0 6.162-3.302c1.544-1.156 3-2.44 4.09-4.039 1.935-2.842 3.113-6.212 3.951-9.52.436-1.711.769-3.447.997-5.197a21.827 21.827 0 0 0-.944-.015c-5.285.018-10.446 1.43-15.635 2.224-2.501.383-5.058.587-7.592.405-2.432-.18-4.793-.858-7.062-1.74-4.64-1.808-8.887-4.484-13.58-6.185-4.803-1.74-9.96-2.09-14.873-.555a22.272 22.272 0 0 0-11.95 8.963 22.598 22.598 0 0 0-2.218 4.308 23.52 23.52 0 0 1 9.809-1.03Z" fill="#FEBE10" stroke="#FDBE14" stroke-width="0.735" stroke-miterlimit="10"></path>
-                                                        <path d="M64.233 61.746c.456-2.39 2.62-4.086 4.586-5.284 2.842-1.723 6.032-2.862 9.205-3.816 3.299-1 6.662-1.782 10.043-2.454 2.614-.521 5.243-.963 7.874-1.39 6.956-1.133 13.875-2.711 20.941-2.964 4.314-.154 9.129.251 12.947-2.175a10.237 10.237 0 0 0 2.671-2.495c.02-3.146-.614-6.328-1.647-9.207-1.564-4.355-4.147-8.467-7.755-11.421-3.607-2.955-7.944-4.496-12.579-4.688a43.178 43.178 0 0 1-1.503 7.058c-.917 3.041-2.144 6.18-4.162 8.675-1.325 1.63-3.09 2.987-4.839 4.118a21.911 21.911 0 0 1-6.032 2.726c-4.05 1.117-8.32.942-12.387 0-4.302-1-8.386-2.789-12.282-4.844-3.895-2.055-7.65-4.42-11.375-6.787-1.827-1.16-3.636-2.266-5.67-3.034a24.126 24.126 0 0 0-6.843-1.478 23.23 23.23 0 0 0-8.965 1.14 22.352 22.352 0 0 0-1.395 9.659c.416 5.078 2.448 9.923 5.484 13.995 5.885 7.903 14.644 12.306 23.61 15.824a4.64 4.64 0 0 1 .073-1.158Z" fill="#F9A822" stroke="#F9A821" stroke-width="0.735" stroke-miterlimit="10"></path><path d="M128.756 44.413c-1.743.82-3.678 1.175-5.579 1.358-2.884.274-5.786.126-8.68.342-3.464.258-6.896.797-10.314 1.393-3.176.553-6.35 1.118-9.53 1.647-2.59.428-5.173.88-7.743 1.416a95.835 95.835 0 0 0-10.206 2.642c-3.072 1.001-6.203 2.192-8.86 4.062-1.867 1.32-3.718 3.229-3.54 5.683.894.35 1.788.692 2.682 1.027 4.883 1.826 9.9 3.734 13.967 7.087 4.135 3.41 7.335 7.808 11.555 11.125 4.003 3.147 9.13 5.651 14.355 4.533 4.462-.956 8.596-4.782 8.812-9.5.224-4.925-3.99-8.135-6.956-11.436-1.561-1.735-2.913-3.89-3.016-6.282-.062-1.4.34-2.888 1.239-3.964a4.96 4.96 0 0 1 .58-.413c.223-.067.503-.147.716-.199a6.941 6.941 0 0 1 1.148-.027h.378c.099.03.2.054.303.071.482.097.961.22 1.431.363.256.076.509.158.761.244 2.548 1.693 5.813 2.295 8.861 1.679 4.76-.962 8.398-4.887 10.122-9.247a18.845 18.845 0 0 0 1.249-6.648 10.156 10.156 0 0 1-3.735 3.044Z" fill="#F47C21" stroke="#F47C20" stroke-width="0.735" stroke-miterlimit="10"></path><path d="M98.808 68.78h-.82M105.479 79.025l.548-.818M58.087 50.666l-.274-.27M65.143 22.692l.546-.546M83.883 27.438l-.82.273M95.164 43.26l-.82-.55M94.753 54.559l.274-.545M81.792 67.825l-.273-.274M121.307 50.804v-.273M115.635 20.512l.821-.819M114.401 37.34l-.307-.16M98.322 25.096a.962.962 0 0 0-.802.138M60.228 38.326l-.798-.16M41.158 31.75l-.307-.16M76.312 44.766l-.308.306" stroke="#000" stroke-width="1.47" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-                                                    <div>
-                                                        <h4 className='font-bold'>Trisha</h4>
-                                                        <p className=''>😎 dsd</p>
-                                                    </div>
+                                            <div className='flex my-6'>
+                                                <svg class="sc-hBEYId fIZqVx w-24" viewBox="0 0 168 96">
+                                                    <path d="M46.33 22.214c2.21.23 4.378.763 6.442 1.585 2.037.815 3.85 1.988 5.693 3.158 3.724 2.363 7.468 4.707 11.388 6.741 3.972 2.055 8.147 3.837 12.543 4.75 4.236.88 8.66.867 12.78-.55a22.536 22.536 0 0 0 6.162-3.302c1.544-1.156 3-2.44 4.09-4.039 1.935-2.842 3.113-6.212 3.951-9.52.436-1.711.769-3.447.997-5.197a21.827 21.827 0 0 0-.944-.015c-5.285.018-10.446 1.43-15.635 2.224-2.501.383-5.058.587-7.592.405-2.432-.18-4.793-.858-7.062-1.74-4.64-1.808-8.887-4.484-13.58-6.185-4.803-1.74-9.96-2.09-14.873-.555a22.272 22.272 0 0 0-11.95 8.963 22.598 22.598 0 0 0-2.218 4.308 23.52 23.52 0 0 1 9.809-1.03Z" fill="#FEBE10" stroke="#FDBE14" stroke-width="0.735" stroke-miterlimit="10"></path>
+                                                    <path d="M64.233 61.746c.456-2.39 2.62-4.086 4.586-5.284 2.842-1.723 6.032-2.862 9.205-3.816 3.299-1 6.662-1.782 10.043-2.454 2.614-.521 5.243-.963 7.874-1.39 6.956-1.133 13.875-2.711 20.941-2.964 4.314-.154 9.129.251 12.947-2.175a10.237 10.237 0 0 0 2.671-2.495c.02-3.146-.614-6.328-1.647-9.207-1.564-4.355-4.147-8.467-7.755-11.421-3.607-2.955-7.944-4.496-12.579-4.688a43.178 43.178 0 0 1-1.503 7.058c-.917 3.041-2.144 6.18-4.162 8.675-1.325 1.63-3.09 2.987-4.839 4.118a21.911 21.911 0 0 1-6.032 2.726c-4.05 1.117-8.32.942-12.387 0-4.302-1-8.386-2.789-12.282-4.844-3.895-2.055-7.65-4.42-11.375-6.787-1.827-1.16-3.636-2.266-5.67-3.034a24.126 24.126 0 0 0-6.843-1.478 23.23 23.23 0 0 0-8.965 1.14 22.352 22.352 0 0 0-1.395 9.659c.416 5.078 2.448 9.923 5.484 13.995 5.885 7.903 14.644 12.306 23.61 15.824a4.64 4.64 0 0 1 .073-1.158Z" fill="#F9A822" stroke="#F9A821" stroke-width="0.735" stroke-miterlimit="10"></path><path d="M128.756 44.413c-1.743.82-3.678 1.175-5.579 1.358-2.884.274-5.786.126-8.68.342-3.464.258-6.896.797-10.314 1.393-3.176.553-6.35 1.118-9.53 1.647-2.59.428-5.173.88-7.743 1.416a95.835 95.835 0 0 0-10.206 2.642c-3.072 1.001-6.203 2.192-8.86 4.062-1.867 1.32-3.718 3.229-3.54 5.683.894.35 1.788.692 2.682 1.027 4.883 1.826 9.9 3.734 13.967 7.087 4.135 3.41 7.335 7.808 11.555 11.125 4.003 3.147 9.13 5.651 14.355 4.533 4.462-.956 8.596-4.782 8.812-9.5.224-4.925-3.99-8.135-6.956-11.436-1.561-1.735-2.913-3.89-3.016-6.282-.062-1.4.34-2.888 1.239-3.964a4.96 4.96 0 0 1 .58-.413c.223-.067.503-.147.716-.199a6.941 6.941 0 0 1 1.148-.027h.378c.099.03.2.054.303.071.482.097.961.22 1.431.363.256.076.509.158.761.244 2.548 1.693 5.813 2.295 8.861 1.679 4.76-.962 8.398-4.887 10.122-9.247a18.845 18.845 0 0 0 1.249-6.648 10.156 10.156 0 0 1-3.735 3.044Z" fill="#F47C21" stroke="#F47C20" stroke-width="0.735" stroke-miterlimit="10"></path><path d="M98.808 68.78h-.82M105.479 79.025l.548-.818M58.087 50.666l-.274-.27M65.143 22.692l.546-.546M83.883 27.438l-.82.273M95.164 43.26l-.82-.55M94.753 54.559l.274-.545M81.792 67.825l-.273-.274M121.307 50.804v-.273M115.635 20.512l.821-.819M114.401 37.34l-.307-.16M98.322 25.096a.962.962 0 0 0-.802.138M60.228 38.326l-.798-.16M41.158 31.75l-.307-.16M76.312 44.766l-.308.306" stroke="#000" stroke-width="1.47" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                                <div>
+                                                    <h4 className='font-bold'>Trisha</h4>
+                                                    <p className=''>😎 dsd</p>
                                                 </div>
-                                                {/* 
+                                            </div>
+                                            {/* 
                                                 <button className="mt-2 px-6 py-2 bg-graytype font-bold text-white rounded-3xl">
                                                     Continue
                                                 </button> */}
-                                            </form>
-                                        </div>
-
-                                    </div>
-
-                                    <div className="border-0 p-5 rounded-b-lg shadow-lg relative flex flex-col  bg-white outline-none focus:outline-none">
-                                        <div className='flex justify-between'>
-                                            <p className='font-bold'>0/5 Topics</p>
-                                            <div className='flex '>
-                                                <p>0% Impact</p>
-                                                <svg class="sc-hBEYId eKpImK w-4" viewBox="0 0 24 24">
-                                                    <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 1.25a8.75 8.75 0 100 17.5 8.75 8.75 0 000-17.5zm0 13.125a.937.937 0 110 1.875.937.937 0 010-1.875zm0-10a3.125 3.125 0 012.064 5.471l-.193.157-.273.204-.11.09c-.07.06-.134.12-.195.185-.423.451-.668 1.07-.668 2.018a.625.625 0 11-1.25 0c0-1.265.366-2.19 1.007-2.873.139-.148.283-.277.444-.404l.308-.23.148-.125A1.875 1.875 0 1010.125 9.5a.625.625 0 11-1.25 0c0-1.726 1.4-3.125 3.125-3.125z" fill="currentColor">
-                                                    </path>
-                                                </svg>
-                                            </div>
-                                        </div>
-
-                                        <input type='text' className='  p-1 bg-transparent    border-0 rounded-md focus:border-0 focus:ring-0 ' placeholder='+ Add' />
-                                        <select className=' sm:w-full md:w-80 rounded-full bg-whitetype border-0 focus:border-0 focus:ring-0'>
-                                            <option selected disabled>
-                                                Save in stash
-                                            </option>
-                                            <option>
-                                                + New Stash
-                                            </option>
-                                        </select>
-
-                                        <div className='flex bg-purpletype text-white rounded-3xl px-4 py-1 items-center w-fit mt-4'>
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                            </svg>
-                                            <p className='ml-2'>
-                                                Publish
-                                            </p>
-                                        </div>
+                                        </form>
                                     </div>
 
                                 </div>
+
+                                <div className="border-0 p-5 rounded-b-lg shadow-lg relative flex flex-col  bg-white outline-none focus:outline-none">
+                                    <div className='flex justify-between'>
+                                        <p className='font-bold'>0/5 Topics</p>
+                                        <div className='flex '>
+                                            <p>0% Impact</p>
+                                            <svg class="sc-hBEYId eKpImK w-4" viewBox="0 0 24 24">
+                                                <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 1.25a8.75 8.75 0 100 17.5 8.75 8.75 0 000-17.5zm0 13.125a.937.937 0 110 1.875.937.937 0 010-1.875zm0-10a3.125 3.125 0 012.064 5.471l-.193.157-.273.204-.11.09c-.07.06-.134.12-.195.185-.423.451-.668 1.07-.668 2.018a.625.625 0 11-1.25 0c0-1.265.366-2.19 1.007-2.873.139-.148.283-.277.444-.404l.308-.23.148-.125A1.875 1.875 0 1010.125 9.5a.625.625 0 11-1.25 0c0-1.726 1.4-3.125 3.125-3.125z" fill="currentColor">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                    </div>
+
+                                    <input type='text' className='  p-1 bg-transparent    border-0 rounded-md focus:border-0 focus:ring-0 ' placeholder='+ Add' />
+                                    <select className=' sm:w-full md:w-80 rounded-full bg-whitetype border-0 focus:border-0 focus:ring-0'>
+                                        <option selected disabled>
+                                            Save in stash
+                                        </option>
+                                        <option>
+                                            + New Stash
+                                        </option>
+                                    </select>
+
+                                    <div className='flex bg-purpletype text-white rounded-3xl px-4 py-1 items-center w-fit mt-4'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                        </svg>
+                                        <p className='ml-2'>
+                                            Publish
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* </div> */}
                             </div>
                         </div>
-                        <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                        <div className="opacity-25 ml-0 fixed w-full inset-0 z-40 bg-black"></div>
                     </>
                 ) : null
                 }
