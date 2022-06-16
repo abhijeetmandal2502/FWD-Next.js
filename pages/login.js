@@ -14,7 +14,7 @@ const Login = (props) => {
   const { data: session } = useSession();
   //  const token = session.user.access_token;
 
-  console.log('checksession', session);
+  // console.log('checksession', session);
   const schema = yup.object().shape({
     email: yup.string().required(),
     password: yup.string().min(2).max(32).required(),
@@ -35,7 +35,7 @@ const Login = (props) => {
       password: data.password,
     });
 
-    console.log('loginApisuccess', data);
+    console.log('loginApisuccess', result);
 
     if (result.error) {
       enqueueSnackbar(result.error, {
@@ -51,7 +51,7 @@ const Login = (props) => {
       setShowLoginModal(false);
       router.push('/');
 
-      console.log('loginApisuccess', result);
+      // console.log('loginApisuccess', result);
     }
   };
 
@@ -128,19 +128,19 @@ const Login = (props) => {
               <h3 className="text-3xl font-bold">Sign In</h3>
 
               <span
-                class="block text-3xl font-bold"
+                className="block text-3xl font-bold"
                 onClick={() => setShowLoginModal(false)}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
+                  className="h-5 w-5"
                   viewBox="0 0 20 20"
                   fill="currentColor"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   />
                 </svg>
               </span>
@@ -149,8 +149,8 @@ const Login = (props) => {
             {/*body*/}
             <div className="relative p-6 flex-auto">
               <form onSubmit={handleSubmit(onSubmitHandler)}>
-                <label class="block mb-4 ">
-                  <span class="block text-sm font-medium text-slate-700">
+                <label className="block mb-4 ">
+                  <span className="block text-sm font-medium text-slate-700">
                     Email or username
                   </span>
                   {/* <!-- Using form state modifers, the classes can be identical for every input --> */}
@@ -158,19 +158,19 @@ const Login = (props) => {
                     type="text"
                     placeholder="Enter Email"
                     {...register('email')}
-                    class=" block mt-1 w-full px-3 py-2 bg-fuchsia-50   rounded-3xl text-sm 
+                    className=" block mt-1 w-full px-3 py-2 bg-fuchsia-50   rounded-3xl text-sm 
                                                 focus:outline-none focus:border-fuchsia-900 focus:ring-1 focus:ring-fuchsia-900
                                                 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
                                                 invalid:border-fuchsia-900 invalid:text-fuchsia-900
                                                 focus:invalid:border-fuchsia-900 focus:invalid:ring-fuchsia-900"
                   />
                 </label>
-                <label class="block mb-4">
+                <label className="block mb-4">
                   <div className="flex justify-between">
-                    <span class="block text-sm font-medium text-slate-700">
+                    <span className="block text-sm font-medium text-slate-700">
                       Password
                     </span>
-                    <span class="block text-sm font-medium text-slate-700">
+                    <span className="block text-sm font-medium text-slate-700">
                       Forget Password
                     </span>
                   </div>
@@ -179,7 +179,7 @@ const Login = (props) => {
                     type="password"
                     placeholder="Enter password"
                     {...register('password')}
-                    class=" block mt-1 w-full px-3 py-2 bg-fuchsia-50   rounded-3xl text-sm 
+                    className=" block mt-1 w-full px-3 py-2 bg-fuchsia-50   rounded-3xl text-sm 
                                                 focus:outline-none focus:border-fuchsia-900 focus:ring-1 focus:ring-fuchsia-900
                                                 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
                                                 invalid:border-fuchsia-900 invalid:text-fuchsia-900
@@ -187,7 +187,7 @@ const Login = (props) => {
                   />
                 </label>
                 <button
-                  class="w-full px-3 py-2 bg-fuchsia-900 font-bold text-white rounded-3xl"
+                  className="w-full px-3 py-2 bg-fuchsia-900 font-bold text-white rounded-3xl"
                   type="submit"
                 >
                   Sign In
