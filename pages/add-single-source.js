@@ -70,22 +70,44 @@ const AddsingleSource = () => {
                                                         <p className=''>😎 dsd</p>
                                                     </div>
                                                 </div>
-
-
+                                                {/* 
                                                 <button className="mt-2 px-6 py-2 bg-graytype font-bold text-white rounded-3xl">
                                                     Continue
-                                                </button>
+                                                </button> */}
                                             </form>
                                         </div>
 
                                     </div>
 
-                                    <div className="border-0 p-5 rounded-b-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                                    <div className="border-0 p-5 rounded-b-lg shadow-lg relative flex flex-col  bg-white outline-none focus:outline-none">
                                         <div className='flex justify-between'>
                                             <p className='font-bold'>0/5 Topics</p>
-                                            <div>
-
+                                            <div className='flex '>
+                                                <p>0% Impact</p>
+                                                <svg class="sc-hBEYId eKpImK w-4" viewBox="0 0 24 24">
+                                                    <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 1.25a8.75 8.75 0 100 17.5 8.75 8.75 0 000-17.5zm0 13.125a.937.937 0 110 1.875.937.937 0 010-1.875zm0-10a3.125 3.125 0 012.064 5.471l-.193.157-.273.204-.11.09c-.07.06-.134.12-.195.185-.423.451-.668 1.07-.668 2.018a.625.625 0 11-1.25 0c0-1.265.366-2.19 1.007-2.873.139-.148.283-.277.444-.404l.308-.23.148-.125A1.875 1.875 0 1010.125 9.5a.625.625 0 11-1.25 0c0-1.726 1.4-3.125 3.125-3.125z" fill="currentColor">
+                                                    </path>
+                                                </svg>
                                             </div>
+                                        </div>
+
+                                        <input type='text' className='  p-1 bg-transparent    border-0 rounded-md focus:border-0 focus:ring-0 ' placeholder='+ Add' />
+                                        <select className=' sm:w-full md:w-80 rounded-full bg-whitetype border-0 focus:border-0 focus:ring-0'>
+                                            <option selected disabled>
+                                                Save in stash
+                                            </option>
+                                            <option>
+                                                + New Stash
+                                            </option>
+                                        </select>
+
+                                        <div className='flex bg-purpletype text-white rounded-3xl px-4 py-1 items-center w-fit mt-4'>
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                            </svg>
+                                            <p className='ml-2'>
+                                                Publish
+                                            </p>
                                         </div>
                                     </div>
 
