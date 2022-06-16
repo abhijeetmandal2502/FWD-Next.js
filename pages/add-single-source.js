@@ -31,83 +31,64 @@ const AddsingleSource = () => {
                 {showModal ? (
                     <>
                         <div className=" justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                            <div className="relative w-full my-6 mx-4  md:mx-40 max-w-xl">
+                            <div className="relative w-full my-6 mx-4  md:mx-40 max-w-2xl">
                                 {/*content*/}
-                                <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-whitetype outline-none focus:outline-none">
-                                    {/*header*/}
+                                <div>
+                                    <div className="border-0 rounded-t-lg shadow-lg relative flex flex-col w-full bg-whitetype outline-none focus:outline-none">
+                                        {/*header*/}
 
-                                    <div className="flex items-center justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                                        <h3 className="text-3xl font-bold">
-                                            Preview
-                                        </h3>
+                                        <div className="flex items-center justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                                            <h3 className="text-3xl font-bold">
+                                                Preview
+                                            </h3>
 
-                                        <span className="block text-3xl font-bold" onClick={() => setShowModal(false)}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                            </svg>
-                                        </span>
-                                    </div>
-
-                                    {/*body*/}
-                                    <div className="relative p-6 flex-auto">
-
-                                        <div className='flex space-x-2'>
-                                            <img className='w-8 rounded-full' src='https://deepstash.com/_next/image?url=https%3A%2F%2Fstatic.deepstash.com%2Fprofile%2F1.png&w=1920&q=75' />
-                                            <p>@trishamistri</p>
+                                            <span className="block text-3xl font-bold" onClick={() => setShowModal(false)}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                </svg>
+                                            </span>
                                         </div>
 
-                                        <form  >
+                                        {/*body*/}
+                                        <div className="relative p-6 flex-auto">
 
-                                            <textarea id="message" rows="4" className="mt-4  px-4 w-full rounded-md text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Your message..."></textarea>
+                                            <div className='flex space-x-2'>
+                                                <img className='w-8 rounded-full' src='https://deepstash.com/_next/image?url=https%3A%2F%2Fstatic.deepstash.com%2Fprofile%2F1.png&w=1920&q=75' />
+                                                <p>@trishamistri</p>
+                                            </div>
 
-                                            <label className="block mb-4 ">
-                                                <span className="mb-4 block text-sm font-medium text-slate-700">Thinking about</span>
-                                                {/* <!-- Using form state modifers, the classes can be identical for every input --> */}
-                                                <input type="text" placeholder='What do unicorns smell like?' className=" block mt-1 w-full px-3 py-2 bg-fuchsia-50   rounded-3xl text-xl font-bold 
-                                                focus:outline-none focus:border-fuchsia-900 focus:ring-1 focus:ring-fuchsia-900
-                                                disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
-                                                invalid:border-fuchsia-900 invalid:text-fuchsia-900
-                                                focus:invalid:border-fuchsia-900 focus:invalid:ring-fuchsia-900" />
-                                            </label>
-                                            <label className="block mb-4">
-                                                <span className="block text-sm font-medium text-slate-700 mb-4">While</span>
+                                            <form  >
 
-                                                <div className='flex space-x-4 '>
-                                                    <button className=" w-full py-3 bg-white   text-black rounded-3xl">
-                                                        🚶 On a walk
-                                                    </button>
+                                                <textarea id="message" rows="4" className="mt-4  px-4 w-full rounded-md text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400" placeholder="Your message..."></textarea>
 
-                                                    <button className="w-full py-3  bg-white   text-black rounded-3xl">
-                                                        🚿 In the shower
-                                                    </button>
-                                                    <svg className="  w-14" viewBox="0 0 24 24">
-                                                        <path d="M20.955 3.044a3.564 3.564 0 010 5.04L9.034 20.007a2.24 2.24 0 01-.995.577l-5.096 1.39a.747.747 0 01-.917-.917l1.39-5.096c.102-.376.302-.72.577-.995L15.914 3.044a3.564 3.564 0 015.041 0zM14.95 6.123l-9.9 9.898a.747.747 0 00-.192.332l-1.045 3.834 3.834-1.045c.125-.034.24-.1.332-.193l9.898-9.899-2.927-2.927zM16.97 4.1l-.966.966 2.927 2.928.967-.966A2.07 2.07 0 1016.97 4.1z" fill="currentColor"></path>
-                                                    </svg>
+                                                <div className='flex my-6'>
+                                                    <svg class="sc-hBEYId fIZqVx w-24" viewBox="0 0 168 96">
+                                                        <path d="M46.33 22.214c2.21.23 4.378.763 6.442 1.585 2.037.815 3.85 1.988 5.693 3.158 3.724 2.363 7.468 4.707 11.388 6.741 3.972 2.055 8.147 3.837 12.543 4.75 4.236.88 8.66.867 12.78-.55a22.536 22.536 0 0 0 6.162-3.302c1.544-1.156 3-2.44 4.09-4.039 1.935-2.842 3.113-6.212 3.951-9.52.436-1.711.769-3.447.997-5.197a21.827 21.827 0 0 0-.944-.015c-5.285.018-10.446 1.43-15.635 2.224-2.501.383-5.058.587-7.592.405-2.432-.18-4.793-.858-7.062-1.74-4.64-1.808-8.887-4.484-13.58-6.185-4.803-1.74-9.96-2.09-14.873-.555a22.272 22.272 0 0 0-11.95 8.963 22.598 22.598 0 0 0-2.218 4.308 23.52 23.52 0 0 1 9.809-1.03Z" fill="#FEBE10" stroke="#FDBE14" stroke-width="0.735" stroke-miterlimit="10"></path>
+                                                        <path d="M64.233 61.746c.456-2.39 2.62-4.086 4.586-5.284 2.842-1.723 6.032-2.862 9.205-3.816 3.299-1 6.662-1.782 10.043-2.454 2.614-.521 5.243-.963 7.874-1.39 6.956-1.133 13.875-2.711 20.941-2.964 4.314-.154 9.129.251 12.947-2.175a10.237 10.237 0 0 0 2.671-2.495c.02-3.146-.614-6.328-1.647-9.207-1.564-4.355-4.147-8.467-7.755-11.421-3.607-2.955-7.944-4.496-12.579-4.688a43.178 43.178 0 0 1-1.503 7.058c-.917 3.041-2.144 6.18-4.162 8.675-1.325 1.63-3.09 2.987-4.839 4.118a21.911 21.911 0 0 1-6.032 2.726c-4.05 1.117-8.32.942-12.387 0-4.302-1-8.386-2.789-12.282-4.844-3.895-2.055-7.65-4.42-11.375-6.787-1.827-1.16-3.636-2.266-5.67-3.034a24.126 24.126 0 0 0-6.843-1.478 23.23 23.23 0 0 0-8.965 1.14 22.352 22.352 0 0 0-1.395 9.659c.416 5.078 2.448 9.923 5.484 13.995 5.885 7.903 14.644 12.306 23.61 15.824a4.64 4.64 0 0 1 .073-1.158Z" fill="#F9A822" stroke="#F9A821" stroke-width="0.735" stroke-miterlimit="10"></path><path d="M128.756 44.413c-1.743.82-3.678 1.175-5.579 1.358-2.884.274-5.786.126-8.68.342-3.464.258-6.896.797-10.314 1.393-3.176.553-6.35 1.118-9.53 1.647-2.59.428-5.173.88-7.743 1.416a95.835 95.835 0 0 0-10.206 2.642c-3.072 1.001-6.203 2.192-8.86 4.062-1.867 1.32-3.718 3.229-3.54 5.683.894.35 1.788.692 2.682 1.027 4.883 1.826 9.9 3.734 13.967 7.087 4.135 3.41 7.335 7.808 11.555 11.125 4.003 3.147 9.13 5.651 14.355 4.533 4.462-.956 8.596-4.782 8.812-9.5.224-4.925-3.99-8.135-6.956-11.436-1.561-1.735-2.913-3.89-3.016-6.282-.062-1.4.34-2.888 1.239-3.964a4.96 4.96 0 0 1 .58-.413c.223-.067.503-.147.716-.199a6.941 6.941 0 0 1 1.148-.027h.378c.099.03.2.054.303.071.482.097.961.22 1.431.363.256.076.509.158.761.244 2.548 1.693 5.813 2.295 8.861 1.679 4.76-.962 8.398-4.887 10.122-9.247a18.845 18.845 0 0 0 1.249-6.648 10.156 10.156 0 0 1-3.735 3.044Z" fill="#F47C21" stroke="#F47C20" stroke-width="0.735" stroke-miterlimit="10"></path><path d="M98.808 68.78h-.82M105.479 79.025l.548-.818M58.087 50.666l-.274-.27M65.143 22.692l.546-.546M83.883 27.438l-.82.273M95.164 43.26l-.82-.55M94.753 54.559l.274-.545M81.792 67.825l-.273-.274M121.307 50.804v-.273M115.635 20.512l.821-.819M114.401 37.34l-.307-.16M98.322 25.096a.962.962 0 0 0-.802.138M60.228 38.326l-.798-.16M41.158 31.75l-.307-.16M76.312 44.766l-.308.306" stroke="#000" stroke-width="1.47" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                                    <div>
+                                                        <h4 className='font-bold'>Trisha</h4>
+                                                        <p className=''>😎 dsd</p>
+                                                    </div>
                                                 </div>
 
-                                            </label>
-                                            <button className="mt-2 px-6 py-2 bg-graytype font-bold text-white rounded-3xl">
-                                                Continue
-                                            </button>
-                                        </form>
+
+                                                <button className="mt-2 px-6 py-2 bg-graytype font-bold text-white rounded-3xl">
+                                                    Continue
+                                                </button>
+                                            </form>
+                                        </div>
+
                                     </div>
-                                    {/*footer*/}
-                                    {/* <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-                                    <button
-                                        className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                        type="button"
-                                        onClick={() => setShowModal(false)}
-                                    >
-                                        Close
-                                    </button>
-                                    <button
-                                        className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                        type="button"
-                                        onClick={() => setShowModal(false)}
-                                    >
-                                        Save Changes
-                                    </button>
-                                </div> */}
+
+                                    <div className="border-0 p-5 rounded-b-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                                        <div className='flex justify-between'>
+                                            <p className='font-bold'>0/5 Topics</p>
+                                            <div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
