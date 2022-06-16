@@ -2,6 +2,7 @@ import '../styles/globals.css';
 import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
 import { SnackbarProvider } from 'notistack';
+import Layout from '../component/layout';
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   // return <Component {...pageProps} />
@@ -21,7 +22,10 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
             <link rel="shortcut icon" href="/favicon/favicon.ico" />
           </Head>
 
-          <Component {...pageProps} />
+          {/* */}
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </SnackbarProvider>
       </SessionProvider>
     </>

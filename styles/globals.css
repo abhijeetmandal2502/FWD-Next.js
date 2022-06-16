@@ -12,6 +12,9 @@
   h3 {
     @apply text-xl;
   }
+  h3 {
+    @apply text-lg;
+  }
   a {
     @apply text-blue-600 underline;
   }
@@ -35,5 +38,5 @@ a {
 }
 
 body{
-  background-color: #F2EFEB;
+  /* background-color: #F2EFEB; */
 }
