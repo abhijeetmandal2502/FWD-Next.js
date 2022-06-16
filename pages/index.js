@@ -4,8 +4,16 @@ import styles from '../styles/Home.module.css';
 import { Dropdown } from 'flowbite-react';
 import React, { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react'
+  import { useSession, signIn, signOut, getSession, reg } from 'next-auth/react';
+import Link from 'next/link';
+import AuthButton from '../components/AuthButton';
+
+
+
 
 const Home = () => {
+  const { data: session, status } = useSession();
+  const token = session && session?.user?.data?.jwt;
 
   const collection = [1, 2, 3, 4]
 
