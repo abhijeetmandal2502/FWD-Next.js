@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css';
 // import { Dropdown } from 'flowbite-react';
 import React, { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
+import Link from 'next/link';
 
 const Home = () => {
   const collection = [1, 2, 3, 4];
