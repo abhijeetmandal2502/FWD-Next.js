@@ -30,10 +30,10 @@ const AddsingleSource = () => {
                 {/* modal */}
                 {showModal ? (
                     <>
-                        <div className=" justify-center items-center flex overflow-x-hidden  ml-0 overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                        <div className=" justify-center items-center flex overflow-x-hidden  w-full  ml-0 overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                             <div className="relative w-full my-6 mx-4 md:mx-40 max-w-2xl">
                                 {/*content*/}
-                                {/* <div> */}
+
                                 <div className="border-0 rounded-t-lg shadow-lg relative flex flex-col w-full bg-whitetype outline-none focus:outline-none">
                                     {/*header*/}
 
@@ -111,7 +111,7 @@ const AddsingleSource = () => {
                                     </div>
                                 </div>
 
-                                {/* </div> */}
+
                             </div>
                         </div>
                         <div className="opacity-25 ml-0 fixed w-full inset-0 z-40 bg-black"></div>
