@@ -1,7 +1,7 @@
 import getConfig from 'next/config';
 import React from 'react';
-import ErrorAlert from '../../components/alert/ErrorAlert';
-import SuccessAlert from '../test/SuccessAlert';
+// import ErrorAlert from '../../components/alert/ErrorAlert';
+// import SuccessAlert from '../test/SuccessAlert';
 // import { useSession, signIn, signOut, getSession } from 'next-auth/react';
 // import { getToken } from 'next-auth/jwt';
 
