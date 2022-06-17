@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const PostList = () => {
   const collection = [1, 2];
@@ -84,19 +85,19 @@ const PostList = () => {
                   key={index}
                   className="  bg-white rounded-xl hover:shadow-2xl border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
                 >
-                  <a href="#">
+                  <Link href="#">
                     <img
                       className="rounded-t-xl h-44 w-full object-cover"
                       src="https://deepstash.com/_next/image?url=https%3A%2F%2Fd3t70bohx4vuj7.cloudfront.net%2F_lo8ffPe9ghzN6Pxt7Abf6U-8HH7kigV7h82HzkwJhk%2Fresize%3Afill%3A900%3A0%2Fgravity%3Asm%2Fquality%3A90%2FaHR0cHM6Ly9pbWFnZXMudW5zcGxhc2guY29tL3Bob3RvLTE1NTI5ODUxOTAtNjI2YWYyMDczNjhkP2l4bGliPXJiLTEuMi4xJml4aWQ9TW53eE1qQTNmREI4TUh4d2FHOTBieTF3WVdkbGZIeDhmR1Z1ZkRCOGZIeDgmYXV0bz1mb3JtYXQmZml0PWNyb3Amdz0xMDc0JnE9ODA&w=1920&q=75"
                       alt=""
                     />
-                  </a>
+                  </Link>
                   <div className="p-4">
-                    <a href="#">
+                    <Link href="#">
                       <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900  leading-0">
                         Businesses Need To Tell Good Stories
                       </h5>
-                    </a>
+                    </Link>
 
                     <div className="font-bold text-sm mb-2">
                       Most CMOs think content is the future of marketing and
@@ -161,19 +162,19 @@ const PostList = () => {
                   key={index}
                   className="  bg-white rounded-xl hover:shadow-2xl border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
                 >
-                  <a href="#">
+                  <Link href="#">
                     <img
                       className="rounded-t-xl h-44 w-full object-cover"
                       src="https://deepstash.com/_next/image?url=https%3A%2F%2Fd3t70bohx4vuj7.cloudfront.net%2F3tFFldErAyIHFYTzwQoeKfhTBxl9cf4aFGyPBVz_uMM%2Fresize%3Afill%3A900%3A0%2Fgravity%3Asm%2Fquality%3A90%2FaHR0cHM6Ly9pbWFnZXMudW5zcGxhc2guY29tL3Bob3RvLTE1Mjg2MDUxMDUzNDUtNTM0NGVhMjBlMjY5P2l4bGliPXJiLTEuMi4xJml4aWQ9TW53eE1qQTNmREI4TUh4d2FHOTBieTF3WVdkbGZIeDhmR1Z1ZkRCOGZIeDgmYXV0bz1mb3JtYXQmZml0PWNyb3Amdz0yMDcwJnE9ODA&w=1920&q=75"
                       alt=""
                     />
-                  </a>
+                  </Link>
                   <div className="p-4">
-                    <a href="#">
+                    <Link href="#">
                       <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900  leading-0">
                         The Power Of Storytelling
                       </h5>
-                    </a>
+                    </Link>
 
                     <div className="font-bold text-sm mb-2">
                       Stories makes us think and feel and are an essential

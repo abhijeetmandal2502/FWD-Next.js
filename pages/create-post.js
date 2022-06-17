@@ -213,12 +213,12 @@ const CreatePost = () => {
                         />
                       </div>
                     ) : (
-                      <div class="flex flex-wrap justify-center">
+                      <div className="flex flex-wrap justify-center">
                         <img
                           // rows="6"
                           // src="https://mdbootstrap.com/img/new/standard/city/043.jpg"
                           src={URL.createObjectURL(postImage[index])}
-                          class=" mb-3 mt-1 rounded-md px-10 max-w-sm h-auto transition-shadow ease-in-out duration-300 shadow-none hover:shadow-xl"
+                          className=" mb-3 mt-1 rounded-md px-10 max-w-sm h-auto transition-shadow ease-in-out duration-300 shadow-none hover:shadow-xl"
                           alt=""
                         />
                       </div>
