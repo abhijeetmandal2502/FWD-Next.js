@@ -194,7 +194,7 @@ const CreatePost = () => {
               return (
                 !removeIndex.includes(index) && (
                   <div
-                    className="bg-white shadow-xl rounded-2xl my-3  "
+                    className="bg-white shadow-xl rounded-2xl my-3   "
                     key={index}
                   >
                     {postImage[index] == undefined &&

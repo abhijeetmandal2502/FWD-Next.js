@@ -187,7 +187,7 @@ const Login = (props) => {
                   />
                 </label>
                 <button
-                  className="w-full px-3 py-2 bg-fuchsia-900 font-bold text-white rounded-3xl"
+                  className="w-full px-3 py-2 bg-gray-900 font-bold text-white rounded-3xl"
                   type="submit"
                 >
                   Sign In

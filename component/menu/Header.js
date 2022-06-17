@@ -1,5 +1,6 @@
 import React from 'react';
 import AuthButton from '../../components/AuthButton';
+import Link from 'next/link';
 
 const Header = () => {
   return (
@@ -7,7 +8,7 @@ const Header = () => {
       <div className=" my-6  mx-4 md:mx-8 lg:mx-48">
         <div className="p-4 bg-white rounded-full flex items-center justify-between space-x-6">
           <div>
-            <h2 className="text-xl font-bold ">Deepstash</h2>
+            <h2 className="text-xl font-bold ">FWD</h2>
           </div>
           <div className="w-full">
             <form className="flex items-center  ">
@@ -56,8 +57,8 @@ const Header = () => {
           </div>
           <AuthButton />
 
-          <a href="/add-source">
-            <div className="flex bg-orange-400 text-white rounded-3xl px-4 py-1">
+          <Link href="/add-source">
+            <div className="flex bg-gray-400 text-white rounded-3xl px-4 py-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -74,7 +75,7 @@ const Header = () => {
               </svg>
               <p className="ml-2">Create</p>
             </div>
-          </a>
+          </Link>
         </div>
 
         {/* menu */}
@@ -162,13 +163,14 @@ const Header = () => {
             <div className="hidden w-full md:block md:w-auto" id="mobile-menu">
               <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
                 <li>
-                  <a
-                    href="/"
-                    className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent"
-                    aria-current="page"
-                  >
-                    Home
-                  </a>
+                  <Link href="/">
+                    <div
+                      className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-white dark:bg-blue-600 md:dark:bg-transparent"
+                      aria-current="page"
+                    >
+                      Home
+                    </div>
+                  </Link>
                 </li>
                 <li>
                   <a

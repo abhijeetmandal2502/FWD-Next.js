@@ -43,25 +43,52 @@ const Register = (props) => {
     formData.append('email', data.email);
     formData.append('password', data.password);
 
-    await fetch(url, {
-      // mode: 'no-cors',
-      method: 'post',
-      headers: {
-        // Accept: 'application/json',
-        // 'Content-Type': 'application/json',
-        // 'Access-Control-Allow-Origin': '*',
-      },
+    try {
+      var data = await fetch(url, {
+        method: 'post',
 
-      body: formData,
+        body: formData,
+      });
+      var res = await data.json();
 
-      // JSON.stringify({
-      //   user_login: data.user_login,
-      //   first_name: data.first_name,
-      //   email: data.email,
-      //   password: data.password,
-      //   // AUTH_KEY: process.env.authKey,
-      // }),
-    });
+      if (res.status == 'error') {
+        enqueueSnackbar(res.message, {
+          variant: 'error',
+          autoHideDuration: 3000,
+        });
+      } else {
+        signIn('credentials', {
+          redirect: false,
+          email: data.email,
+          password: data.password,
+        })
+          .then((value) => {
+            enqueueSnackbar('Successfully registered !', {
+              variant: 'success',
+              autoHideDuration: 3000,
+            });
+            setShowRegmodal(false);
+          })
+          .catch((error) => {
+            enqueueSnackbar('something went wrong!', {
+              variant: 'error',
+              autoHideDuration: 3000,
+            });
+          });
+
+        // enqueueSnackbar('success', {
+        //   variant: 'success',
+        //   autoHideDuration: 3000,
+        // });
+      }
+    } catch (e) {
+      enqueueSnackbar('something went wrong!', {
+        variant: 'error',
+        autoHideDuration: 3000,
+      });
+    }
+
+    console.log('checkregister', res);
     // .then((response) => {
     // if (!response.ok) {
     //   return response
@@ -245,7 +272,7 @@ const Register = (props) => {
               </div>
 
               <button
-                className="w-full px-3 py-2 bg-fuchsia-900 font-bold text-white rounded-3xl"
+                className="w-full px-3 py-2 bg-gray-900 font-bold text-white rounded-3xl"
                 type="submit"
               >
                 Sign Up
