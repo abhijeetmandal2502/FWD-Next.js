@@ -33,9 +33,6 @@ const Register = (props) => {
 
   const registersubmit = async (data) => {
     const url = 'https://fwd.thenwg.xyz/api/create-user.php';
-    // 'https://fwd.thenwg.xyz/?rest_route=/auth/v1/users';
-    // `${process.env.apiUrl}/auth/register`;
-    // console.log('checkregister', '0');
 
     const formData = new FormData();
     formData.append('user_login', data.user_login);
@@ -75,11 +72,6 @@ const Register = (props) => {
               autoHideDuration: 3000,
             });
           });
-
-        // enqueueSnackbar('success', {
-        //   variant: 'success',
-        //   autoHideDuration: 3000,
-        // });
       }
     } catch (e) {
       enqueueSnackbar('something went wrong!', {
@@ -89,58 +81,6 @@ const Register = (props) => {
     }
 
     console.log('checkregister', res);
-    // .then((response) => {
-    // if (!response.ok) {
-    //   return response
-    //     .text()
-    //     .then((result) => Promise.reject(new Error(result)));
-    // }
-
-    // var result = await data.json();
-    // console.log('checkregister  1', result);
-    //   if (result.errors) {
-    //     console.log('checkregister  2', response);
-    //   } else {
-    //     console.log('checkregister  3', result);
-    //   }
-
-    //   // if (response.status == 400) {
-    //   //   enqueueSnackbar('Failed to register', {
-    //   //     variant: 'error',
-    //   //     autoHideDuration: 3000,
-    //   //   });
-    //   // } else {
-    //   //   signIn('credentials', {
-    //   //     redirect: false,
-    //   //     email: data.email,
-    //   //     password: data.password,
-    //   //   })
-    //   //     .then((value) => {
-    //   //       enqueueSnackbar('Successfully registered !', {
-    //   //         variant: 'success',
-    //   //         autoHideDuration: 3000,
-    //   //       });
-    //   //       console.log('checkregister  5', value);
-    //   //       // setShowRegmodal(false);
-
-    //   //       // router.push('/');
-    //   //     })
-    //   //     .catch((error) => {
-    //   //       enqueueSnackbar('Failed to register', {
-    //   //         variant: 'error',
-    //   //         autoHideDuration: 3000,
-    //   //       });
-    //   //       console.log('checkregister  6', error);
-    //   //     });
-    //   // }
-    // })
-    // .catch((error) => {
-    //   enqueueSnackbar('error.message', {
-    //     variant: 'error',
-    //     autoHideDuration: 3000,
-    //   });
-    //   console.log('checkregister  9', error);
-    // });
   };
 
   return (
@@ -159,7 +99,7 @@ const Register = (props) => {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                 >
                   <path
                     strokeLinecap="round"
