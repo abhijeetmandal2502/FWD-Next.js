@@ -42,19 +42,19 @@ const Home = () => {
                 key={index}
                 className="max-w-sm bg-white rounded-xl hover:shadow-2xl border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
               >
-                <a href="#">
+                <Link href="#">
                   <img
                     className="rounded-t-xl"
                     src="https://deepstash.com/_next/image?url=https%3A%2F%2Fd1dfxfqogsjixt.cloudfront.net%2Fcollection%2Fpersuasive_storytelling.png&w=1920&q=75"
                     alt=""
                   />
-                </a>
+                </Link>
                 <div className="p-4">
-                  <a href="#">
+                  <Link href="#">
                     <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900  leading-0">
                       Persuasive storytelling
                     </h5>
-                  </a>
+                  </Link>
 
                   <div className="flex justify-between">
                     <div>
