@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 import { useSession, signIn, signOut, getSession, reg } from 'next-auth/react';
 import { useSnackbar } from 'notistack';
+import Link from 'next/link';
 
 const Register = (props) => {
   const { setShowRegmodal } = props;
@@ -208,7 +209,7 @@ const Register = (props) => {
 
               <div className="mb-4  text-center">
                 <p>By creating an account, you agree with our</p>
-                <a href="#">Terms of Service & Privacy Policy</a>
+                <Link href="#">Terms of Service & Privacy Policy</Link>
               </div>
 
               <button
