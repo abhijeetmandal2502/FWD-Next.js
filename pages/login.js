@@ -12,9 +12,7 @@ const Login = (props) => {
   const router = useRouter();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const { data: session } = useSession();
-  //  const token = session.user.access_token;
 
-  // console.log('checksession', session);
   const schema = yup.object().shape({
     email: yup.string().required(),
     password: yup.string().min(2).max(32).required(),
@@ -35,14 +33,11 @@ const Login = (props) => {
       password: data.password,
     });
 
-    console.log('loginApisuccess', result);
-
     if (result.error) {
       enqueueSnackbar(result.error, {
         variant: 'error',
         autoHideDuration: 3000,
       });
-      // console.log('loginApierror', credentials);
     } else {
       enqueueSnackbar('Successfully logged in !', {
         variant: 'success',
@@ -50,75 +45,11 @@ const Login = (props) => {
       });
       setShowLoginModal(false);
       router.push('/');
-
-      // console.log('loginApisuccess', result);
     }
   };
 
-  // const registersubmit = async () => {
-  //   const url = `${process.env.apiUrl}/auth/register`;
-  //   const response = await fetch(url, {
-  //     method: 'post',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-
-  //     body: JSON.stringify({
-  //       nickName: data.nickName,
-  //       email: data.email,
-  //       password: data.password,
-  //     }),
-  //     // mode: 'no-cors',
-  //   });
-  //   const result = await response.json();
-  //   console.log('checkregister', result);
-
-  //   if (result.error) {
-  //     if (!toast.isActive(id)) {
-  //       toast({
-  //         position: 'top-start',
-  //         description: result.message,
-  //         // description: "We've created your account for you.",
-  //         status: 'error',
-  //         duration: 9000,
-  //         isClosable: true,
-  //       });
-  //     }
-  //   } else {
-  //     var loginResult = await signIn('credentials', {
-  //       redirect: false,
-  //       email: data.email,
-  //       password: data.password,
-  //     });
-  //     console.log('loginApi', loginResult);
-  //     if (loginResult.error) {
-  //       if (!toast.isActive(id)) {
-  //         toast({
-  //           position: 'top-start',
-  //           description: 'result.error',
-  //           // description: "We've created your account for you.",
-  //           status: 'error',
-  //           duration: 9000,
-  //           isClosable: true,
-  //         });
-  //       }
-  //     } else {
-  //       if (!toast.isActive(id)) {
-  //         toast({
-  //           description: 'Successfully registered !',
-  //           // description: "We've created your account for you.",
-  //           status: 'success',
-  //           duration: 9000,
-  //           isClosable: true,
-  //         });
-  //       }
-  //     }
-  //   }
-  // };
-
   return (
     <div className=" my-8 sm:mx-1 md:mx-10 lg:mx-20 xl:mx-48   p-4 ">
-      {/* // onSubmit={handleSubmit(onSubmitHandler)} */}
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
         <div className="relative w-full my-6 mx-4  md:mx-40 max-w-xl">
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -187,7 +118,7 @@ const Login = (props) => {
                   />
                 </label>
                 <button
-                  className="w-full px-3 py-2 bg-fuchsia-900 font-bold text-white rounded-3xl"
+                  className="w-full px-3 py-2 bg-gray-900 font-bold text-white rounded-3xl"
                   type="submit"
                 >
                   Sign In

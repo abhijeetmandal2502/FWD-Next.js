@@ -33,9 +33,6 @@ const Register = (props) => {
 
   const registersubmit = async (data) => {
     const url = 'https://fwd.thenwg.xyz/api/create-user.php';
-    // 'https://fwd.thenwg.xyz/?rest_route=/auth/v1/users';
-    // `${process.env.apiUrl}/auth/register`;
-    // console.log('checkregister', '0');
 
     const formData = new FormData();
     formData.append('user_login', data.user_login);
@@ -43,77 +40,47 @@ const Register = (props) => {
     formData.append('email', data.email);
     formData.append('password', data.password);
 
-    await fetch(url, {
-      // mode: 'no-cors',
-      method: 'post',
-      headers: {
-        // Accept: 'application/json',
-        // 'Content-Type': 'application/json',
-        // 'Access-Control-Allow-Origin': '*',
-      },
+    try {
+      var data = await fetch(url, {
+        method: 'post',
 
-      body: formData,
+        body: formData,
+      });
+      var res = await data.json();
 
-      // JSON.stringify({
-      //   user_login: data.user_login,
-      //   first_name: data.first_name,
-      //   email: data.email,
-      //   password: data.password,
-      //   // AUTH_KEY: process.env.authKey,
-      // }),
-    });
-    // .then((response) => {
-    // if (!response.ok) {
-    //   return response
-    //     .text()
-    //     .then((result) => Promise.reject(new Error(result)));
-    // }
+      if (res.status == 'error') {
+        enqueueSnackbar(res.message, {
+          variant: 'error',
+          autoHideDuration: 3000,
+        });
+      } else {
+        signIn('credentials', {
+          redirect: false,
+          email: data.email,
+          password: data.password,
+        })
+          .then((value) => {
+            enqueueSnackbar('Successfully registered !', {
+              variant: 'success',
+              autoHideDuration: 3000,
+            });
+            setShowRegmodal(false);
+          })
+          .catch((error) => {
+            enqueueSnackbar('something went wrong!', {
+              variant: 'error',
+              autoHideDuration: 3000,
+            });
+          });
+      }
+    } catch (e) {
+      enqueueSnackbar('something went wrong!', {
+        variant: 'error',
+        autoHideDuration: 3000,
+      });
+    }
 
-    // var result = await data.json();
-    // console.log('checkregister  1', result);
-    //   if (result.errors) {
-    //     console.log('checkregister  2', response);
-    //   } else {
-    //     console.log('checkregister  3', result);
-    //   }
-
-    //   // if (response.status == 400) {
-    //   //   enqueueSnackbar('Failed to register', {
-    //   //     variant: 'error',
-    //   //     autoHideDuration: 3000,
-    //   //   });
-    //   // } else {
-    //   //   signIn('credentials', {
-    //   //     redirect: false,
-    //   //     email: data.email,
-    //   //     password: data.password,
-    //   //   })
-    //   //     .then((value) => {
-    //   //       enqueueSnackbar('Successfully registered !', {
-    //   //         variant: 'success',
-    //   //         autoHideDuration: 3000,
-    //   //       });
-    //   //       console.log('checkregister  5', value);
-    //   //       // setShowRegmodal(false);
-
-    //   //       // router.push('/');
-    //   //     })
-    //   //     .catch((error) => {
-    //   //       enqueueSnackbar('Failed to register', {
-    //   //         variant: 'error',
-    //   //         autoHideDuration: 3000,
-    //   //       });
-    //   //       console.log('checkregister  6', error);
-    //   //     });
-    //   // }
-    // })
-    // .catch((error) => {
-    //   enqueueSnackbar('error.message', {
-    //     variant: 'error',
-    //     autoHideDuration: 3000,
-    //   });
-    //   console.log('checkregister  9', error);
-    // });
+    console.log('checkregister', res);
   };
 
   return (
@@ -132,7 +99,7 @@ const Register = (props) => {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                 >
                   <path
                     strokeLinecap="round"
@@ -245,7 +212,7 @@ const Register = (props) => {
               </div>
 
               <button
-                className="w-full px-3 py-2 bg-fuchsia-900 font-bold text-white rounded-3xl"
+                className="w-full px-3 py-2 bg-gray-900 font-bold text-white rounded-3xl"
                 type="submit"
               >
                 Sign Up

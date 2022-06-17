@@ -15,7 +15,7 @@ export default function AuthButton() {
   return (
     <div className="h-10 flex">
       <button
-        className="bg-fuchsia-900  text-white active:bg-pink-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+        className="bg-gray-900  text-white active:bg-pink-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
         type="button"
         onClick={() => setShowLoginModal(true)}
       >
@@ -23,7 +23,7 @@ export default function AuthButton() {
       </button>
 
       <button
-        className="bg-fuchsia-900  text-white active:bg-pink-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+        className="bg-gray-900  text-white active:bg-pink-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
         type="button"
         onClick={() => setShowRegmodal(true)}
       >
