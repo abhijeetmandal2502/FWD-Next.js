@@ -64,7 +64,7 @@ const AddSource = () => {
         {
           variant: 'warning',
           autoHideDuration: 3000,
-        }
+        },
       );
     } else if (parentContent == '') {
       setShowPreviewModal(true);
@@ -270,7 +270,7 @@ const AddSource = () => {
                         onClick={() => {
                           console.log(
                             'removeindexcheck',
-                            postCount.length - removeIndex.length
+                            postCount.length - removeIndex.length,
                           );
                           if (postCount.length - removeIndex.length > 1) {
                             removePost(index);
@@ -532,7 +532,7 @@ const AddSource = () => {
 
                               <div className="flex space-x-4 ">
                                 <div
-                                  className={`w-full py-3 items-center self-center px-10 ${
+                                  className={`w-full py-3 items-center self-center px-10 text-center ${
                                     parentCategory.name !== 'walk'
                                       ? 'bg-white'
                                       : 'bg-gray-200'
@@ -553,7 +553,7 @@ const AddSource = () => {
                                     parentCategory.name !== 'shower'
                                       ? 'bg-white'
                                       : 'bg-gray-200'
-                                  }  text-black rounded-3xl px-10 `}
+                                  }  text-black rounded-3xl px-10 text-center`}
                                   onClick={() => {
                                     setParentCategory({
                                       name: 'shower',
@@ -573,7 +573,7 @@ const AddSource = () => {
                               </div>
                             </label>
                             <div
-                              className={`mt-2 px-6 py-2 w-1/2 self-center mx-auto ${
+                              className={`mt-5 px-6 py-2 w-1/3 self-center mx-auto text-center ${
                                 parentTitle !== '' && parentCategory.name != ''
                                   ? 'bg-gray-900'
                                   : 'bg-graytype'
@@ -713,7 +713,7 @@ const AddSource = () => {
                                   parentContent == ''
                                     ? 'bg-graytype'
                                     : 'bg-gray-900'
-                                } font-bold text-white rounded-3xl`}
+                                } font-bold text-white rounded-3xl w-1/3 text-center mx-auto`}
                                 onClick={() => {
                                   if (parentContent !== '') {
                                     setShowPreviewModal(false);
