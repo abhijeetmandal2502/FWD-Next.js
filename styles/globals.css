@@ -40,3 +40,8 @@ a {
 body{
   background-color: #F2EFEB;
 }
+
+.absolute-div{
+  position: absolute;
+  top:-35px;
+}
