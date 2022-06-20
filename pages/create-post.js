@@ -7,7 +7,7 @@ const CreatePost = () => {
   const { data: session } = useSession();
   const token = session?.user?.token;
 
-  console.log('checksession', token);
+  console.log('checksession', session);
 
   const {
     register,

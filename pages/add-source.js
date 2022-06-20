@@ -10,6 +10,7 @@ const AddSource = () => {
   const router = useRouter();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const token = session?.user?.token;
+  console.log('chekuser', session);
 
   const {
     register,
@@ -57,6 +58,69 @@ const AddSource = () => {
     // console.log('setimage', postImage);
   };
 
+  const [sourceUrlData, setSourceUrldata] = useState([]);
+  const chooseArr = [];
+  const [choosenData, setChooseData] = useState([]);
+
+  const chooseSourceData = (data) => {
+    for (var i = 0; i < sourceUrlData.length; i++) {
+      if (chooseArr[i]) {
+        chooseArr[i] = {
+          status: false,
+          content: '',
+        };
+      } else {
+        chooseArr[i] = {
+          status: true,
+          content: sourceUrlData[i],
+        };
+      }
+    }
+    setChooseData(chooseArr);
+
+    // if()
+  };
+
+  console.log('checkchooseArr', chooseArr);
+
+  //
+  const getchPosrDataBySourceUrl = async (sourceUrl) => {
+    var url = 'https://fwd.thenwg.xyz/api/crowl/get-source.php';
+
+    const formData = new FormData();
+
+    formData.append('token', token);
+    formData.append('url', sourceUrl);
+
+    // start
+    var response = await fetch(url, {
+      method: 'post',
+
+      body: formData,
+    });
+    const result = await response.json();
+
+    setSourceUrldata(result.result);
+    console.log('checkresult', result);
+    // .then((response) => {
+    //   var result = response.json();
+    //   enqueueSnackbar('successfully fetched! ', {
+    //     variant: 'success',
+    //     autoHideDuration: 3000,
+    //   });
+
+    //   // router.reload('/add-source');
+    //   console.log('checkpost 2', result);
+    // })
+    // .catch((error) => {
+    //   enqueueSnackbar('something went wrong!', {
+    //     variant: 'error',
+    //     autoHideDuration: 3000,
+    //   });
+    //   console.log('checkpost 3', error);
+    // });
+    // end
+  };
   const onSubmitHandler = async (data) => {
     if (parentTitle == '' && parentCategory.name == '' && parentContent == '') {
       enqueueSnackbar(
@@ -145,6 +209,20 @@ const AddSource = () => {
     }
   };
 
+  useEffect(() => {
+    getchPosrDataBySourceUrl(
+      'https://www.aajtak.in/science/story/worlds-first-space-hotel-to-be-opened-in-2025-1485064-2022-06-20',
+    );
+    console.log('omgcheckdata 1', sourceUrlData);
+    for (var i = 0; i < sourceUrlData.length; i++) {
+      chooseArr.push({
+        status: false,
+        content: '',
+      });
+      console.log('omgcheckdata 2', chooseArr);
+      // if()
+    }
+  }, ['']);
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)}>
       <div className=" mb-6  mx-4 md:mx-8 lg:mx-48">
@@ -323,7 +401,14 @@ const AddSource = () => {
                     </svg>
                   </div>
                   <div className="mt-6 grid md:grid-cols-3   gap-4">
-                    <div className="bg-white rounded-lg text-center shadow-sm p-2 hover:shadow-lg ">
+                    <div
+                      className="bg-white rounded-lg text-center shadow-sm p-2 hover:shadow-lg "
+                      onClick={async () => {
+                        await getchPosrDataBySourceUrl(
+                          'https://www.aajtak.in/science/story/worlds-first-space-hotel-to-be-opened-in-2025-1485064-2022-06-20',
+                        );
+                      }}
+                    >
                       <svg
                         className="sc-hBEYId gsxGRD h-16 w-16 m-auto"
                         viewBox="0 0 61 49"
@@ -654,7 +739,7 @@ const AddSource = () => {
                                 className="w-8 rounded-full"
                                 src="https://deepstash.com/_next/image?url=https%3A%2F%2Fstatic.deepstash.com%2Fprofile%2F1.png&w=1920&q=75"
                               />
-                              <p>@trishamistri</p>
+                              <p>@{session.user?.user_display_name}</p>
                             </div>
 
                             <form>

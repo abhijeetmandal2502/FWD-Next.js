@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useSession, getSession } from 'next-auth/react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const PostList = () => {
+const Posts = () => {
   const { data: session } = useSession();
   const token = session?.user?.token;
   const collection = [1, 2];
 
   const [postData, setPostData] = useState();
 
+  const router = useRouter();
+  const postId = router.query.id;
+  // console.log('checkrouter', );
+
   const getPosts = async () => {
     const formData = new FormData();
     formData.append('token', token);
-    formData.append('post', 325);
+    formData.append('post', postId);
 
     var response = await fetch('https://fwd.thenwg.xyz/api/get-posts.php', {
       method: 'post',
@@ -275,4 +280,4 @@ const PostList = () => {
   );
 };
 
-export default PostList;
+export default Posts;

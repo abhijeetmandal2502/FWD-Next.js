@@ -1,8 +1,11 @@
 import React from 'react';
 import AuthButton from '../../components/AuthButton';
 import Link from 'next/link';
+import { useSession, signIn, signOut, getSession, reg } from 'next-auth/react';
 
 const Header = () => {
+  const { data: session, status } = useSession();
+  console.log('checkauth', status);
   return (
     <>
       <div className=" my-6  mx-4 md:mx-8 lg:mx-48">
@@ -55,7 +58,17 @@ const Header = () => {
               </div>
             </form>
           </div>
-          <AuthButton />
+          {status == 'unauthenticated' ? (
+            <AuthButton />
+          ) : (
+            <button
+              className="bg-gray-900  text-white active:bg-pink-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              type="button"
+              onClick={async () => await signOut()}
+            >
+              Logout
+            </button>
+          )}
 
           <Link href="/add-source">
             <div className="flex bg-gray-400 text-white rounded-3xl px-4 py-1">
