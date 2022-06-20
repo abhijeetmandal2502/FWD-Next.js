@@ -2,6 +2,8 @@ import React from 'react'
 
 const AddSource = () => {
     const [showModal, setShowModal] = React.useState(false);
+    const [showLink, setShowLink] = React.useState(false);
+
     return (
         <div className=" mb-6  mx-4 md:mx-8 lg:mx-48">
             <div className="p-4 bg-red-50 shadow-2xl rounded-b-2xl flex items-center justify-between space-x-6">
@@ -70,7 +72,7 @@ const AddSource = () => {
                             </svg>
                         </div>
                         <div className="mt-6 grid md:grid-cols-3   gap-4">
-                            <div className='bg-white rounded-lg text-center shadow-sm p-2 hover:shadow-lg '>
+                            <div onClick={() => setShowLink(true)} className='bg-white rounded-lg text-center shadow-sm p-2 hover:shadow-lg '>
                                 <svg className="sc-hBEYId gsxGRD h-16 w-16 m-auto" viewBox="0 0 61 49"  >
                                     <path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd" d="M22.117 9.414c5.387-.329 10.436-6.197 15.322-3.879C42.211 7.8 42.1 14.7 43.86 19.728c1.817 5.196 5.852 10.427 4.008 15.615-1.84 5.178-8.086 6.875-12.908 9.419-4.086 2.154-8.268 4.72-12.842 4.16-4.35-.533-7.201-4.472-10.764-7.053-3.597-2.606-8.396-4.008-10.168-8.11-1.827-4.232-.322-9.023.843-13.488C3.262 15.539 3.815 9.63 8.081 7.325c4.276-2.31 9.197 2.384 14.036 2.089z" fill="#0A8976"></path>
                                     <path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd" d="M52.901 36.163c3.618-4.737 7.622-10.294 7.426-15.836-.196-5.513-4.392-9.026-8.396-11.533-3.298-2.064-7.715-.723-11.728-1.063-3.776-.32-7.153-2.012-11.066-.87-4.765 1.392-9.67 3.644-13.207 7.956-3.982 4.853-7.585 11.143-7.233 16.956.348 5.748 4.977 9 8.983 11.94 3.287 2.414 7.407 2.904 11.62 3.188 3.963.266 7.946.225 11.957-1.6 4.372-1.989 8.467-4.977 11.645-9.138z" fill="#E7E3DF"></path><path d="M28.73 30.984l4.722-8.086c1.266-2.16 2.56-4.43 2.683-6.933.122-2.502-1.37-5.268-3.836-5.693-3.018-.527-5.395 2.42-7.028 5.013l-9.478 15.034c-.957 1.519-1.968 3.148-1.861 4.958.114 2.424 2.337 4.403 4.721 4.76 2.385.359 4.844-.648 6.732-2.171 1.889-1.523 3.321-3.541 4.722-5.509 4.328-6.083 8.715-12.3 10.95-19.421.74-2.361 1.232-4.883.61-7.264-.622-2.38-2.624-4.544-5.08-4.666-2.636-.13-4.804 1.967-6.531 3.934a102.967 102.967 0 00-14.732 22.27" stroke="#2C2B2A" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -178,6 +180,71 @@ const AddSource = () => {
                                         Save Changes
                                     </button>
                                 </div> */}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                            </>
+                        ) : null
+                        }
+
+
+
+                        {/* show link modal */}
+                        {showLink ? (
+                            <>
+                                <div className=" justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                                    <div className="relative w-full my-6 mx-4  md:mx-40 max-w-xl">
+                                        {/*content*/}
+                                        <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-whitetype outline-none focus:outline-none">
+                                            {/*header*/}
+
+                                            <div className="flex items-center justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                                                <h3 className="text-2xl font-bold">
+                                                    Quick add ideas
+                                                </h3>
+
+                                                <span className="block text-3xl font-bold" onClick={() => setShowLink(false)}>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+
+                                            {/*body*/}
+                                            <div>
+                                                <div className=" px-6 py-3 flex-auto">
+                                                    <div className='font-bold'>
+                                                        Rishabh Pant: 5 मैच 58 रन... चाहे जो हो ऋषभ पंत नहीं होंगे टीम से बाहर, कोच राहुल द्रविड़ ने कर दिया ऐलान
+                                                    </div>
+                                                    <p className='text-xs'>
+                                                        https://www.aajtak.in/sports/cricket/story/t20-world-cup-in-australia-rahul-dravid-on-rishabh-pant-team-india-plan-tspo-1485050-2022-06-20
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                                                            <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                                                        </svg>
+                                                    </p>
+                                                </div>
+                                                <div className=" px-6 flex-auto bg-graytype h-44 overflow-y-scroll scrollbar">
+                                                    <div className='border-dashed border-2 border-white-600 p-2 rounded mb-2'>
+                                                        ऋषभ पंत अपने खराब फॉर्म के कारण आलोचकों के निशाने पर हैं. इसके बावजूद कोच राहुल द्रविड़ ने इस विकेटकीपर बल्लेबाज पर भरोसा जताया है.
+                                                    </div>
+                                                    <div className='border-dashed border-2 border-white-600 p-2 rounded mb-2'>
+                                                        ऋषभ पंत अपने खराब फॉर्म के कारण आलोचकों के निशाने पर हैं. इसके बावजूद कोच राहुल द्रविड़ ने इस विकेटकीपर बल्लेबाज पर भरोसा जताया है.
+                                                    </div>
+                                                    <div className='border-dashed border-2 border-white-600 p-2 rounded mb-2'>
+                                                        ऋषभ पंत अपने खराब फॉर्म के कारण आलोचकों के निशाने पर हैं. इसके बावजूद कोच राहुल द्रविड़ ने इस विकेटकीपर बल्लेबाज पर भरोसा जताया है.
+                                                    </div>
+                                                </div>
+                                                <div className=" px-6 flex-auto py-3 ">
+                                                    <button className=" mr-2 px-6 py-2 bg-purpletype font-bold text-white rounded-3xl">
+                                                        Create idea from 1 paragraph
+                                                    </button>
+                                                    <button className=" px-6 py-2 bg-graytype font-bold text-white rounded-3xl">
+                                                        Continue
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

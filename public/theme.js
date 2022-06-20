@@ -21,7 +21,8 @@ module.exports = {
             graytype: '#a19f9d',
             whitetype: '#faf7f3',
             white: 'fff',
-
+            lightype: '#faf7f3',
+            purpletype: '#743c7a',
         },
         fontFamily: {
             sans: ['Graphik', 'sans-serif'],
