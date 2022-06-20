@@ -24,6 +24,7 @@ const AddSource = () => {
   const [parentPostShow, setparentPostShow] = useState(false);
   const [showModal, setShowModal] = React.useState(false);
   const [showPreviewModal, setShowPreviewModal] = React.useState(false);
+  const [showLink, setShowLink] = useState(false);
 
   const addPost = (index) => {
     if (index > 0) {
@@ -815,6 +816,93 @@ const AddSource = () => {
                           <div className="flex justify-between">
                             <p className="font-bold">0/5 Topics</p>
                             <div></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                </>
+              ) : null}
+
+              {/* show link modal */}
+              {showLink ? (
+                <>
+                  <div className=" justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                    <div className="relative w-full my-6 mx-4  md:mx-40 max-w-xl">
+                      {/*content*/}
+                      <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-whitetype outline-none focus:outline-none">
+                        {/*header*/}
+
+                        <div className="flex items-center justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                          <h3 className="text-2xl font-bold">
+                            Quick add ideas
+                          </h3>
+
+                          <span
+                            className="block text-3xl font-bold"
+                            onClick={() => setShowLink(false)}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"
+                              />
+                            </svg>
+                          </span>
+                        </div>
+
+                        {/*body*/}
+                        <div>
+                          <div className=" px-6 py-3 flex-auto">
+                            <div className="font-bold">
+                              Rishabh Pant: 5 मैच 58 रन... चाहे जो हो ऋषभ पंत
+                              नहीं होंगे टीम से बाहर, कोच राहुल द्रविड़ ने कर
+                              दिया ऐलान
+                            </div>
+                            <p className="text-xs">
+                              https://www.aajtak.in/sports/cricket/story/t20-world-cup-in-australia-rahul-dravid-on-rishabh-pant-team-india-plan-tspo-1485050-2022-06-20
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-5 w-5"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                              >
+                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                              </svg>
+                            </p>
+                          </div>
+                          <div className=" px-6 flex-auto bg-graytype h-44 overflow-y-scroll scrollbar">
+                            <div className="border-dashed border-2 border-white-600 p-2 rounded mb-2">
+                              ऋषभ पंत अपने खराब फॉर्म के कारण आलोचकों के निशाने
+                              पर हैं. इसके बावजूद कोच राहुल द्रविड़ ने इस
+                              विकेटकीपर बल्लेबाज पर भरोसा जताया है.
+                            </div>
+                            <div className="border-dashed border-2 border-white-600 p-2 rounded mb-2">
+                              ऋषभ पंत अपने खराब फॉर्म के कारण आलोचकों के निशाने
+                              पर हैं. इसके बावजूद कोच राहुल द्रविड़ ने इस
+                              विकेटकीपर बल्लेबाज पर भरोसा जताया है.
+                            </div>
+                            <div className="border-dashed border-2 border-white-600 p-2 rounded mb-2">
+                              ऋषभ पंत अपने खराब फॉर्म के कारण आलोचकों के निशाने
+                              पर हैं. इसके बावजूद कोच राहुल द्रविड़ ने इस
+                              विकेटकीपर बल्लेबाज पर भरोसा जताया है.
+                            </div>
+                          </div>
+                          <div className=" px-6 flex-auto py-3 ">
+                            <button className=" mr-2 px-6 py-2 bg-purpletype font-bold text-white rounded-3xl">
+                              Create idea from 1 paragraph
+                            </button>
+                            <button className=" px-6 py-2 bg-graytype font-bold text-white rounded-3xl">
+                              Continue
+                            </button>
                           </div>
                         </div>
                       </div>
