@@ -8,7 +8,7 @@ const Posts = () => {
   const token = session?.user?.token;
   const collection = [1, 2];
 
-  const [postData, setPostData] = useState();
+  const [postData, setPostData] = useState([]);
 
   const router = useRouter();
   const postId = router.query.id;
@@ -28,12 +28,12 @@ const Posts = () => {
     if (result.status == 'success') {
       setPostData(result.posts);
     }
-    console.log('checkpostall', postData);
+    // console.log('checkpostall', postData);
   };
 
   useEffect(() => {
     getPosts();
-  }, ['']);
+  }, []);
 
   return (
     <div className=" mb-6  mx-4 md:mx-8 lg:mx-48 bg-whitetype p-4 rounded-2xl shadow-2xl">

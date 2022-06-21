@@ -6,6 +6,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import { useSession, getSession } from 'next-auth/react';
+import { getLinkPreview, getPreviewFromContent } from 'link-preview-js';
 
 const Home = () => {
   const collection = [1, 2, 3, 4];
@@ -16,31 +17,83 @@ const Home = () => {
   const [postData, setPostData] = useState();
 
   const getPosts = async () => {
-    const formData = new FormData();
-    formData.append('token', token);
-    // formData.append('post', 325);
+    if (token !== undefined) {
+      const formData = new FormData();
+      formData.append('token', token);
+      // formData.append('post', 325);
 
-    var response = await fetch('https://fwd.thenwg.xyz/api/get-posts.php', {
-      method: 'post',
-      body: formData,
-    });
-    var result = await response.json();
+      var response = await fetch('https://fwd.thenwg.xyz/api/get-posts.php', {
+        method: 'post',
+        body: formData,
+      });
+      var result = await response.json();
 
-    if (result.status == 'success') {
-      setPostData(result.posts);
+      if (result.status == 'success') {
+        setPostData(result.posts);
+      }
+      console.log('checkpostallindex', postData);
+    } else {
+      setPostData([]);
     }
-    console.log('checkpostallindex', postData);
   };
 
   useEffect(() => {
     getPosts();
-  });
+  }, [token]);
 
   return (
     <>
       <div className=" my-6  mx-4 md:mx-8 lg:mx-48">
         <div className="flex justify-between">
-          <h3 className="font-bold">COLLECTIONS</h3>
+          <h3
+            className="font-bold"
+            onClick={async () => {
+              // var my = getLinkPreview(
+              //   'https://www.instagram.com/syifa_in_switzerland/',
+              //   {
+              //     // imagesPropertyType: 'og',
+              //     // fetches only open-graph images
+              //     followRedirects: false,
+              //     headers: {
+              //       'Access-Control-Allow-Origin': '*',
+              //       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+              //       'Access-Control-Allow-Headers': 'Content-Type',
+              //       'Access-Control-Allow-Credentials': 'true',
+              //       'Content-Type': 'application/json; charset=utf-8',
+              //       'Content-Length': '443',
+              //       // 'user-agent': 'googlebot', // fetches with googlebot crawler user agent
+              //       // "Accept-Language": "fr-CA", // fetches site for French language
+              //       // ...other optional HTTP request headers
+              //     },
+              //     timeout: 1000,
+              //   },
+              // ).then((data) => data);
+              // evt.preventDefault();
+              // console.log(`Submitting ${text}`);
+              // const text =
+              //   'https://www.aajtak.in/lifestyle/news/story/covid-19-cases-increasing-in-india-face-mask-compulsory-in-some-states-know-why-you-should-wear-mask-tlif-1449903-2022-04-20';
+              // const res = await fetch(
+              //   'http://localhost:5000/fireship-lessons/us-central1/scraper',
+              //   {
+              //     mode: 'no-cors',
+              //     headers: {
+              //       'Access-Control-Allow-Origin': '*',
+              //       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+              //       'Access-Control-Allow-Headers': 'Content-Type',
+              //       'Access-Control-Allow-Credentials': 'true',
+              //       'Content-Type': 'application/json; charset=utf-8',
+              //       'Content-Length': '443',
+              //     },
+              //     method: 'POST',
+              //     body: JSON.stringify({ text }),
+              //   },
+              // );
+              // const result = await res.json();
+              // console.log('checkpreview', my);
+            }}
+          >
+            COLLECTIONS
+          </h3>
 
           <div>
             <div className="flex">
@@ -125,10 +178,10 @@ const Home = () => {
 
       {postData &&
         postData.map((post, i) => {
-          console.log('checkpostdata', post);
+          // console.log('checkpostdata', post);
           const slug = `/posts/${post?.ID}`;
           return (
-            <div className=" my-6  mx-4  md:mx-8 lg:mx-48">
+            <div key={i} className=" my-6  mx-4  md:mx-8 lg:mx-48">
               {/* grid */}
 
               <div
@@ -168,7 +221,7 @@ const Home = () => {
                           viewBox="0 0 24 24"
                         >
                           <path
-                            fill-rule="evenodd"
+                            fillRule="evenodd"
                             clipRule="evenodd"
                             d="M6.384 21.765s5.164-3.134 5.59-3.134c.426 0 5.612 3.127 5.612 3.127 1.214.618 2.414.007 2.414-1.463V6.249C20 3.432 18.048 2 14.986 2H9.014C5.91 2 4 3.496 4 6.426v13.869c0 1.47 1.2 2.081 2.384 1.47zm11.92-1.326c.078.036.136.05.174.055a.77.77 0 00.022-.2V6.25c0-1.033-.34-1.637-.807-2.018-.513-.42-1.385-.731-2.707-.731H9.014c-1.334 0-2.192.323-2.696.754-.467.4-.818 1.052-.818 2.172v13.869c0 .096.011.16.022.2a.583.583 0 00.14-.046l.004-.003.166-.1a215.86 215.86 0 012.432-1.444 73.483 73.483 0 011.944-1.102c.28-.151.545-.289.764-.392.108-.05.227-.103.342-.147l.008-.003a1.89 1.89 0 01.652-.127c.317 0 .59.103.65.127l.008.002c.115.043.234.096.342.147.22.102.485.24.766.39.568.305 1.273.706 1.952 1.1a186.394 186.394 0 012.442 1.44l.167.1.003.002z"
                             fill="currentColor"
@@ -201,7 +254,7 @@ const Home = () => {
                 <Link href={slug}>
                   <div className="my-10 bg-whitetype  md:rounded-r-xl  relative hover:shadow-2xl shadow-lg">
                     <div className="flex px-4 pb-4 absolute-div">
-                      <svg class="sc-hBEYId hucIa w-5" viewBox="0 0 24 24">
+                      <svg className="sc-hBEYId hucIa w-5" viewBox="0 0 24 24">
                         <path
                           d="M18.25 4a.75.75 0 01.75.75v8.5a.75.75 0 01-1.5 0v-8.5a.75.75 0 01.75-.75zM4 18.25a.75.75 0 01.75-.75h8.5a.75.75 0 010 1.5h-8.5a.75.75 0 01-.75-.75zM8.28 7.22a.75.75 0 00-1.06 1.06l6.5 6.5a.75.75 0 101.06-1.06l-6.5-6.5z"
                           fill="currentColor"
@@ -258,7 +311,7 @@ const Home = () => {
                             viewBox="0 0 24 24"
                           >
                             <path
-                              fill-rule="evenodd"
+                              fillRule="evenodd"
                               clipRule="evenodd"
                               d="M6.384 21.765s5.164-3.134 5.59-3.134c.426 0 5.612 3.127 5.612 3.127 1.214.618 2.414.007 2.414-1.463V6.249C20 3.432 18.048 2 14.986 2H9.014C5.91 2 4 3.496 4 6.426v13.869c0 1.47 1.2 2.081 2.384 1.47zm11.92-1.326c.078.036.136.05.174.055a.77.77 0 00.022-.2V6.25c0-1.033-.34-1.637-.807-2.018-.513-.42-1.385-.731-2.707-.731H9.014c-1.334 0-2.192.323-2.696.754-.467.4-.818 1.052-.818 2.172v13.869c0 .096.011.16.022.2a.583.583 0 00.14-.046l.004-.003.166-.1a215.86 215.86 0 012.432-1.444 73.483 73.483 0 011.944-1.102c.28-.151.545-.289.764-.392.108-.05.227-.103.342-.147l.008-.003a1.89 1.89 0 01.652-.127c.317 0 .59.103.65.127l.008.002c.115.043.234.096.342.147.22.102.485.24.766.39.568.305 1.273.706 1.952 1.1a186.394 186.394 0 012.442 1.44l.167.1.003.002z"
                               fill="currentColor"
@@ -286,14 +339,14 @@ const Home = () => {
 
                       <div className="flex mt-4 items-center">
                         <div className="flex items-center">
-                          <div class="flex -space-x-2 overflow-hidden mr-2">
+                          <div className="flex -space-x-2 overflow-hidden mr-2">
                             <img
-                              class="inline-block h-6 w-6 rounded-full ring-2 ring-white"
+                              className="inline-block h-6 w-6 rounded-full ring-2 ring-white"
                               src="https://deepstash.com/assets/reactions/love.png"
                               alt=""
                             />
                             <img
-                              class="inline-block h-6 w-6 rounded-full ring-2 ring-white"
+                              className="inline-block h-6 w-6 rounded-full ring-2 ring-white"
                               src="https://deepstash.com/assets/reactions/deep.png"
                               alt=""
                             />
@@ -303,7 +356,7 @@ const Home = () => {
 
                         <div className="flex items-center ml-4">
                           <svg
-                            class="sc-hBEYId dKDQrr h-6 mr-2"
+                            className="sc-hBEYId dKDQrr h-6 mr-2"
                             viewBox="0 0 24 24"
                           >
                             <path

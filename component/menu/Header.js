@@ -5,7 +5,7 @@ import { useSession, signIn, signOut, getSession, reg } from 'next-auth/react';
 
 const Header = () => {
   const { data: session, status } = useSession();
-  console.log('checkauth', status);
+  // console.log('checkauth', status);
   return (
     <>
       <div className=" my-6  mx-4 md:mx-8 lg:mx-48">

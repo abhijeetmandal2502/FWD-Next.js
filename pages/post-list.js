@@ -23,12 +23,12 @@ const PostList = () => {
     if (result.status == 'success') {
       setPostData(result.posts);
     }
-    console.log('checkpostall', postData);
+    // console.log('checkpostall', postData);
   };
 
   useEffect(() => {
     getPosts();
-  }, ['']);
+  }, []);
 
   return (
     <div className=" mb-6  mx-4 md:mx-8 lg:mx-48 bg-whitetype p-4 rounded-2xl shadow-2xl">
@@ -124,7 +124,7 @@ const PostList = () => {
                     key={i}
                     className="  bg-white rounded-xl hover:shadow-2xl border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
                   >
-                    <Link href="#">
+                    <Link href="/">
                       <img
                         className="rounded-t-xl h-44 w-full object-cover"
                         src={
@@ -136,7 +136,7 @@ const PostList = () => {
                       />
                     </Link>
                     <div className="p-4">
-                      <Link href="#">
+                      <Link href="/">
                         <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900  leading-0">
                           {post?.post_title}
                         </h5>
@@ -202,7 +202,7 @@ const PostList = () => {
                     key={i}
                     className="  bg-white rounded-xl hover:shadow-2xl border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
                   >
-                    <Link href="#">
+                    <Link href="/">
                       <img
                         className="rounded-t-xl h-44 w-full object-cover"
                         src={
@@ -214,7 +214,7 @@ const PostList = () => {
                       />
                     </Link>
                     <div className="p-4">
-                      <Link href="#">
+                      <Link href="/">
                         <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900  leading-0">
                           {post?.post_title}
                         </h5>
