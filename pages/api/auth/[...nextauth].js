@@ -53,11 +53,11 @@ export default NextAuth({
         //   }
         // );
 
-        console.log('authlogin 4', response);
+        // console.log('authlogin 4', response);
 
         if (response.status == 403) {
           const result = await response.json();
-          console.log('authlogin 5', result);
+          // console.log('authlogin 5', result);
           throw new Error(result.message);
           // const session = await getSession({ data });
           // console.log('logindata= session', session);
@@ -68,7 +68,7 @@ export default NextAuth({
           const result = await response.json();
           return result;
 
-          console.log('authlogin 6', result);
+          // console.log('authlogin 6', result);
 
           // if (result.errors) {
           //   throw new Error(result.data.message);

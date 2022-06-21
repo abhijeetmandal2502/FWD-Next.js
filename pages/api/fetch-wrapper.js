@@ -49,7 +49,7 @@ async function postJWT(url, body) {
   };
 
   const response = await fetch(url, requestOptions);
-  console.log('clickapi4', response);
+  // console.log('clickapi4', response);
 
   return handleResponse(response);
 }

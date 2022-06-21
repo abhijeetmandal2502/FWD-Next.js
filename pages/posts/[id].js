@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useSession, getSession } from 'next-auth/react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-const PostList = () => {
+const Posts = () => {
   const { data: session } = useSession();
   const token = session?.user?.token;
   const collection = [1, 2];
 
-  const [postData, setPostData] = useState();
+  const [postData, setPostData] = useState([]);
+
+  const router = useRouter();
+  const postId = router.query.id;
+  // console.log('checkrouter', );
 
   const getPosts = async () => {
     const formData = new FormData();
     formData.append('token', token);
-    formData.append('post', 325);
+    formData.append('post', postId);
 
     var response = await fetch('https://fwd.thenwg.xyz/api/get-posts.php', {
       method: 'post',
@@ -124,7 +129,7 @@ const PostList = () => {
                     key={i}
                     className="  bg-white rounded-xl hover:shadow-2xl border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
                   >
-                    <Link href="/">
+                    <Link href="#">
                       <img
                         className="rounded-t-xl h-44 w-full object-cover"
                         src={
@@ -136,7 +141,7 @@ const PostList = () => {
                       />
                     </Link>
                     <div className="p-4">
-                      <Link href="/">
+                      <Link href="#">
                         <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900  leading-0">
                           {post?.post_title}
                         </h5>
@@ -202,7 +207,7 @@ const PostList = () => {
                     key={i}
                     className="  bg-white rounded-xl hover:shadow-2xl border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
                   >
-                    <Link href="/">
+                    <Link href="#">
                       <img
                         className="rounded-t-xl h-44 w-full object-cover"
                         src={
@@ -214,7 +219,7 @@ const PostList = () => {
                       />
                     </Link>
                     <div className="p-4">
-                      <Link href="/">
+                      <Link href="#">
                         <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900  leading-0">
                           {post?.post_title}
                         </h5>
@@ -275,4 +280,4 @@ const PostList = () => {
   );
 };
 
-export default PostList;
+export default Posts;

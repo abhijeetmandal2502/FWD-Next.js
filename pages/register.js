@@ -81,7 +81,7 @@ const Register = (props) => {
       });
     }
 
-    console.log('checkregister', res);
+    // console.log('checkregister', res);
   };
 
   return (

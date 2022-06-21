@@ -7,7 +7,7 @@ const CreatePost = () => {
   const { data: session } = useSession();
   const token = session?.user?.token;
 
-  console.log('checksession', token);
+  // console.log('checksession', session);
 
   const {
     register,
@@ -32,7 +32,7 @@ const CreatePost = () => {
     setRemoveImageIndex([...removeImageIndex, index]);
     // setRemoveImageIndex([...]);
     // setPostImage(postImage.splice(index), 1);
-    console.log('post count :', postImage);
+    // console.log('post count :', postImage);
   };
 
   const [postImage, setPostImage] = useState([]);
@@ -49,7 +49,7 @@ const CreatePost = () => {
   const onInputChanged = (e) => {
     const files = e.currentTarget.files[0];
     setPostImage([...postImage, files]);
-    console.log('setimage', postImage);
+    // console.log('setimage', postImage);
   };
 
   const onSubmitHandler = async (data) => {
@@ -85,10 +85,10 @@ const CreatePost = () => {
       } else {
       }
     }
-    console.log('honey 1', title);
+    // console.log('honey 1', title);
     const formData = new FormData();
 
-    formData.append('token', token);
+    // formData.append('token', token);
 
     // parent post
     // formData.append(`title[${0}]`, title[i]);
@@ -113,7 +113,7 @@ const CreatePost = () => {
     // formData.append('parent_id', '0');
     // formData.append('is_parent_post', 'yes');
 
-    console.log('checkpostcreate', formData);
+    // console.log('checkpostcreate', formData);
 
     await fetch(url, {
       method: 'post',
@@ -135,10 +135,10 @@ const CreatePost = () => {
     })
       .then((response) => {
         var result = response.json();
-        console.log('checkpost 2', result);
+        // console.log('checkpost 2', result);
       })
       .catch((error) => {
-        console.log('checkpost 3', error);
+        // console.log('checkpost 3', error);
       });
   };
 

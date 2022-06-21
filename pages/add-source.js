@@ -4,12 +4,14 @@ import Link from 'next/link';
 import { useForm, Controller } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
 import { useRouter } from 'next/router';
+import { getLinkPreview, getPreviewFromContent } from 'link-preview-js';
 
 const AddSource = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const token = session?.user?.token;
+  // console.log('chekuser', session);
 
   const {
     register,
@@ -23,6 +25,8 @@ const AddSource = () => {
   const [parentPostShow, setparentPostShow] = useState(false);
   const [showModal, setShowModal] = React.useState(false);
   const [showPreviewModal, setShowPreviewModal] = React.useState(false);
+  const [showLink, setShowLink] = useState(false);
+  const [showAllIdeaModal, setShowAllIdeaModal] = useState(false);
 
   const addPost = (index) => {
     if (index > 0) {
@@ -48,6 +52,7 @@ const AddSource = () => {
     name: '',
     content: '',
   });
+  const [sourceUrl, setSourceUrl] = useState();
 
   // end
 
@@ -57,6 +62,83 @@ const AddSource = () => {
     // console.log('setimage', postImage);
   };
 
+  const [sourceUrlData, setSourceUrldata] = useState([]);
+  const chooseArr = [];
+  const [choosenData, setChooseData] = useState([]);
+
+  const chooseSourceData = (data) => {
+    for (var i = 0; i < sourceUrlData.length; i++) {
+      if (chooseArr[i]) {
+        chooseArr[i] = {
+          status: false,
+          content: '',
+        };
+      } else {
+        chooseArr[i] = {
+          status: true,
+          content: sourceUrlData[i],
+        };
+      }
+    }
+    setChooseData(chooseArr);
+
+    // if()
+  };
+
+  // console.log('checkchooseArr', chooseArr);
+
+  // const is []
+  const [sourceDataFetching, setSourceDataFetching] = useState(false);
+  //
+  const fetchPosrDataBySourceUrl = async (sourceUrl) => {
+    var url = 'https://fwd.thenwg.xyz/api/crowl/get-source.php';
+
+    const formData = new FormData();
+    setSourceDataFetching(true);
+
+    formData.append('token', token);
+    formData.append('url', sourceUrl);
+
+    // start
+    var response = await fetch(url, {
+      method: 'post',
+
+      body: formData,
+    });
+    console.log('checkresult', response);
+
+    if (response.status == 500) {
+      setSourceDataFetching(false);
+      setShowLink(false);
+      setShowAllIdeaModal(true);
+      setSourceUrldata('no-data');
+    }
+    const result = await response.json();
+    setSourceDataFetching(false);
+    setShowLink(false);
+    setShowAllIdeaModal(true);
+
+    setSourceUrldata(result.result);
+    console.log('checkresult', result);
+    // .then((response) => {
+    //   var result = response.json();
+    //   enqueueSnackbar('successfully fetched! ', {
+    //     variant: 'success',
+    //     autoHideDuration: 3000,
+    //   });
+
+    //   // router.reload('/add-source');
+    //   console.log('checkpost 2', result);
+    // })
+    // .catch((error) => {
+    //   enqueueSnackbar('something went wrong!', {
+    //     variant: 'error',
+    //     autoHideDuration: 3000,
+    //   });
+    //   console.log('checkpost 3', error);
+    // });
+    // end
+  };
   const onSubmitHandler = async (data) => {
     if (parentTitle == '' && parentCategory.name == '' && parentContent == '') {
       enqueueSnackbar(
@@ -70,7 +152,7 @@ const AddSource = () => {
       setShowPreviewModal(true);
     } else {
       const url = 'https://fwd.thenwg.xyz/api/create-post.php';
-      console.log('onsubmit call');
+      // console.log('onsubmit call');
 
       const tempTitle = data.title;
       const tempContent = data.content;
@@ -104,14 +186,14 @@ const AddSource = () => {
         } else {
         }
       }
-      console.log('honey 1', title);
+      // console.log('honey 1', title);
       const formData = new FormData();
 
       formData.append('token', token);
       formData.append(`yourSelfTag`, parentCategory.content);
 
       // end
-      console.log('checkpostcreate', categories);
+      // console.log('checkpostcreate', categories);
 
       for (var i = 0; i < title.length; i++) {
         formData.append(`title[${i}]`, title[i]);
@@ -133,18 +215,32 @@ const AddSource = () => {
           });
 
           router.reload('/add-source');
-          console.log('checkpost 2', result);
+          // console.log('checkpost 2', result);
         })
         .catch((error) => {
           enqueueSnackbar('something went wrong!', {
             variant: 'error',
             autoHideDuration: 3000,
           });
-          console.log('checkpost 3', error);
+          // console.log('checkpost 3', error);
         });
     }
   };
 
+  // useEffect(() => {
+  //   // (
+  //   //   'https://www.aajtak.in/science/story/worlds-first-space-hotel-to-be-opened-in-2025-1485064-2022-06-20',
+  //   // );
+  //   // console.log('omgcheckdata 1', sourceUrlData);
+  //   for (var i = 0; i < sourceUrlData.length; i++) {
+  //     chooseArr.push({
+  //       status: false,
+  //       content: '',
+  //     });
+  //     // console.log('omgcheckdata 2', chooseArr);
+  //     // if()
+  //   }
+  // }, []);
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)}>
       <div className=" mb-6  mx-4 md:mx-8 lg:mx-48">
@@ -227,7 +323,7 @@ const AddSource = () => {
                           // src="https://mdbootstrap.com/img/new/standard/city/043.jpg"
                           src={URL.createObjectURL(postImage[index])}
                           className=" mb-3 mt-1 rounded-md px-10 max-w-sm h-auto transition-shadow ease-in-out duration-300 shadow-none hover:shadow-xl"
-                          alt=""
+                          alt={postImage[index]}
                         />
                       </div>
                     )}
@@ -268,10 +364,10 @@ const AddSource = () => {
                       <div
                         className="flex justify-between"
                         onClick={() => {
-                          console.log(
-                            'removeindexcheck',
-                            postCount.length - removeIndex.length,
-                          );
+                          // console.log(
+                          //   'removeindexcheck',
+                          //   postCount.length - removeIndex.length,
+                          // );
                           if (postCount.length - removeIndex.length > 1) {
                             removePost(index);
                           }
@@ -323,7 +419,15 @@ const AddSource = () => {
                     </svg>
                   </div>
                   <div className="mt-6 grid md:grid-cols-3   gap-4">
-                    <div className="bg-white rounded-lg text-center shadow-sm p-2 hover:shadow-lg ">
+                    <div
+                      className="bg-white rounded-lg text-center shadow-sm p-2 hover:shadow-lg "
+                      onClick={() => setShowLink(true)}
+                      // onClick={async () => {
+                      //   await (
+                      //     'https://www.aajtak.in/science/story/worlds-first-space-hotel-to-be-opened-in-2025-1485064-2022-06-20',
+                      //   );
+                      // }}
+                    >
                       <svg
                         className="sc-hBEYId gsxGRD h-16 w-16 m-auto"
                         viewBox="0 0 61 49"
@@ -542,7 +646,7 @@ const AddSource = () => {
                                       name: 'walk',
                                       content: '🚶 On a walk',
                                     });
-                                    console.log('checkcolor', parentCategory);
+                                    // console.log('checkcolor', parentCategory);
                                   }}
                                 >
                                   🚶 On a walk
@@ -559,7 +663,7 @@ const AddSource = () => {
                                       name: 'shower',
                                       content: '🚿 In the shower',
                                     });
-                                    console.log('checkcolor', parentCategory);
+                                    // console.log('checkcolor', parentCategory);
                                   }}
                                 >
                                   🚿 In the shower
@@ -652,9 +756,10 @@ const AddSource = () => {
                             <div className="flex space-x-2">
                               <img
                                 className="w-8 rounded-full"
+                                alt="demo"
                                 src="https://deepstash.com/_next/image?url=https%3A%2F%2Fstatic.deepstash.com%2Fprofile%2F1.png&w=1920&q=75"
                               />
-                              <p>@trishamistri</p>
+                              <p>@{session.user?.user_display_name}</p>
                             </div>
 
                             <form>
@@ -730,6 +835,224 @@ const AddSource = () => {
                           <div className="flex justify-between">
                             <p className="font-bold">0/5 Topics</p>
                             <div></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                </>
+              ) : null}
+
+              {/* show link modal */}
+
+              {showLink ? (
+                <>
+                  <div className=" justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                    <div className="relative w-full my-6 mx-4  md:mx-40 max-w-xl">
+                      {/*content*/}
+                      <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-whitetype outline-none focus:outline-none">
+                        {/*header*/}
+
+                        <div className="flex items-center justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                          <h3 className="text-3xl font-bold">Link</h3>
+
+                          <span
+                            className="block text-3xl font-bold"
+                            onClick={() => {
+                              setSourceDataFetching(false);
+                              setShowLink(false);
+                            }}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                          </span>
+                        </div>
+
+                        {/*body*/}
+                        <div className="relative p-6 flex-auto">
+                          <form>
+                            <label className="block mb-4 ">
+                              <span className="mb-4 block text-sm font-medium text-slate-700">
+                                Thinking about
+                              </span>
+                              {/* <!-- Using form state modifers, the classes can be identical for every input --> */}
+                              <input
+                                type="text"
+                                placeholder="Paste the link here"
+                                onChange={(e) => {
+                                  setSourceUrl(e.currentTarget.value);
+                                }}
+                                className=" block mt-1 w-full px-3 py-2 bg-fuchsia-50   rounded-3xl text-xl font-bold 
+                                                focus:outline-none focus:border-fuchsia-900 focus:ring-1 focus:ring-fuchsia-900
+                                                disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
+                                                invalid:border-fuchsia-900 invalid:text-fuchsia-900
+                                                focus:invalid:border-fuchsia-900 focus:invalid:ring-fuchsia-900"
+                              />
+                            </label>
+
+                            <div className="flex">
+                              <div
+                                className={`mt-5 px-6 py-2 w-1/3 self-center mx-auto text-center ${
+                                  parentTitle !== '' &&
+                                  parentCategory.name != ''
+                                    ? 'bg-gray-900'
+                                    : 'bg-graytype'
+                                } font-bold text-white rounded-3xl `}
+                                onClick={async () => {
+                                  setSourceUrl('');
+                                  console.log('checkurl', sourceUrl);
+                                  await fetchPosrDataBySourceUrl(sourceUrl);
+                                  // getLinkPreview(
+                                  //   'https://www.youtube.com/watch?v=MejbOFk7H6c',
+                                  // ).then((data) =>
+                                  //   console.log('previewdata', data),
+                                  // );
+                                  for (
+                                    var i = 0;
+                                    i < sourceUrlData.length;
+                                    i++
+                                  ) {
+                                    chooseArr.push({
+                                      status: false,
+                                      content: '',
+                                    });
+                                    // console.log('omgcheckdata 2', chooseArr);
+                                    // if()
+                                  }
+                                }}
+                              >
+                                {sourceDataFetching ? 'Loading' : ' Add'}
+                              </div>
+                              <div
+                                className={`mt-5 px-6 py-2 w-1/3 self-center mx-auto text-center ${
+                                  parentTitle !== '' &&
+                                  parentCategory.name != ''
+                                    ? 'bg-gray-900'
+                                    : 'bg-graytype'
+                                } font-bold text-white rounded-3xl `}
+                                onClick={() => {
+                                  setShowLink(false);
+                                }}
+                              >
+                                Cancel
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                        {/*footer*/}
+                        {/* <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                                    <button
+                                        className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        type="button"
+                                        onClick={() => setShowModal(false)}
+                                    >
+                                        Close
+                                    </button>
+                                    <button
+                                        className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                        type="button"
+                                        onClick={() => setShowModal(false)}
+                                    >
+                                        Save Changes
+                                    </button>
+                                </div> */}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                </>
+              ) : (
+                <div></div>
+              )}
+              {showAllIdeaModal ? (
+                <>
+                  <div className=" justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                    <div className="relative w-full my-6 mx-4  md:mx-40 max-w-xl">
+                      {/*content*/}
+                      <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-whitetype outline-none focus:outline-none">
+                        {/*header*/}
+
+                        <div className="flex items-center justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                          <h3 className="text-2xl font-bold">
+                            Quick add ideas
+                          </h3>
+
+                          <span
+                            className="block text-3xl font-bold"
+                            onClick={() => setShowAllIdeaModal(false)}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                          </span>
+                        </div>
+
+                        {/*body*/}
+                        <div>
+                          <div className=" px-6 py-3 flex-auto">
+                            <div className="font-bold">
+                              Rishabh Pant: 5 मैच 58 रन... चाहे जो हो ऋषभ पंत
+                              नहीं होंगे टीम से बाहर, कोच राहुल द्रविड़ ने कर
+                              दिया ऐलान
+                            </div>
+                            <p className="text-xs">
+                              https://www.aajtak.in/sports/cricket/story/t20-world-cup-in-australia-rahul-dravid-on-rishabh-pant-team-india-plan-tspo-1485050-2022-06-20
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-5 w-5"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                              >
+                                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                              </svg>
+                            </p>
+                          </div>
+                          <div className=" px-6 flex-auto bg-graytype h-48 overflow-y-scroll scrollbar">
+                            {sourceUrlData == 'no-data' ? (
+                              <div>no data available</div>
+                            ) : (
+                              sourceUrlData &&
+                              sourceUrlData?.map((item, index) => {
+                                // console.log('getmydata', item);
+                                return (
+                                  <div
+                                    key={index}
+                                    className="mt-2 border-dashed border-2 border-white-600 p-2 rounded mb-2"
+                                  >
+                                    {item}
+                                  </div>
+                                );
+                              })
+                            )}
+                          </div>
+                          <div className=" px-6 flex-auto py-3 ">
+                            <button className=" mr-2 px-6 py-2 bg-purpletype font-bold text-white rounded-3xl">
+                              Create idea from 1 paragraph
+                            </button>
+                            <button className=" px-6 py-2 bg-graytype font-bold text-white rounded-3xl">
+                              Continue
+                            </button>
                           </div>
                         </div>
                       </div>
