@@ -11,7 +11,6 @@ const AddSource = () => {
   const router = useRouter();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const token = session?.user?.token;
-  // console.log('chekuser', session);
 
   const {
     register,
@@ -19,40 +18,51 @@ const AddSource = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
+  // add or remove state
   const [postCount, setPostCount] = useState([0]);
   const [removeIndex, setRemoveIndex] = useState([]);
   const [removeImageIndex, setRemoveImageIndex] = useState([]);
-  const [parentPostShow, setparentPostShow] = useState(false);
+  var selectedItems = [];
+
+  // modals state
   const [showModal, setShowModal] = React.useState(false);
   const [showPreviewModal, setShowPreviewModal] = React.useState(false);
   const [showLink, setShowLink] = useState(false);
   const [showAllIdeaModal, setShowAllIdeaModal] = useState(false);
 
-  const addPost = (index) => {
-    if (index > 0) {
-      setPostCount([...postCount, index]);
-    }
-  };
-
-  const removePost = (index) => {
-    // console.log('checkpostcount', index);
-
-    setRemoveIndex([...removeIndex, index]);
-    setRemoveImageIndex([...removeImageIndex, index]);
-  };
-
-  const [postImage, setPostImage] = useState([]);
-
   // for parent post
-
+  const [parentPostShow, setparentPostShow] = useState(false);
   const [parentTitle, setparentTitle] = useState('');
   const [parentContent, setParentContent] = useState('');
-  const [parentImage, setParentImage] = useState('');
+  const [sourceStatus, setSourceStatus] = useState('');
   const [parentCategory, setParentCategory] = useState({
     name: '',
     content: '',
   });
+  // for child post
+  const [postImage, setPostImage] = useState([]);
+  const [childPostValue, setChildPostValue] = useState([]);
+
+  // link source
+  const [sourceDataFetching, setSourceDataFetching] = useState(false);
+  // yourself source
+  // book source
+
+  // add a post
+  function addPost(index) {
+    if (index > 0) {
+      setPostCount([...postCount, index]);
+    }
+  }
+  // remove apost
+  const removePost = (index) => {
+    setRemoveIndex([...removeIndex, index]);
+    setRemoveImageIndex([...removeImageIndex, index]);
+  };
+
   const [sourceUrl, setSourceUrl] = useState();
+  const [parentImage, setParentImage] = useState('');
 
   // end
 
@@ -81,16 +91,9 @@ const AddSource = () => {
       }
     }
     setChooseData(chooseArr);
-
-    // if()
   };
 
-  // console.log('checkchooseArr', chooseArr);
-
-  // const is []
-  const [sourceDataFetching, setSourceDataFetching] = useState(false);
-  //
-  const fetchPosrDataBySourceUrl = async (sourceUrl) => {
+  const fetchPostDataBySourceUrl = async (sourceUrl) => {
     var url = 'https://fwd.thenwg.xyz/api/crowl/get-source.php';
 
     const formData = new FormData();
@@ -105,7 +108,7 @@ const AddSource = () => {
 
       body: formData,
     });
-    console.log('checkresult', response);
+    // console.log('checkresult', response);
 
     if (response.status == 500) {
       setSourceDataFetching(false);
@@ -116,7 +119,13 @@ const AddSource = () => {
     const result = await response.json();
     setSourceDataFetching(false);
     setShowLink(false);
-    setShowAllIdeaModal(true);
+    setparentTitle(result.title);
+    setSourceStatus('link');
+    // new code
+    setparentPostShow(true);
+    setShowModal(false);
+
+    // setShowAllIdeaModal(true);
 
     setSourceUrldata(result.result);
     console.log('checkresult', result);
@@ -162,7 +171,7 @@ const AddSource = () => {
       const image = [];
       const categories = [];
       const isParent = [];
-
+      // new created 23 july
       if (
         parentTitle !== '' &&
         parentCategory !== '' &&
@@ -227,20 +236,6 @@ const AddSource = () => {
     }
   };
 
-  // useEffect(() => {
-  //   // (
-  //   //   'https://www.aajtak.in/science/story/worlds-first-space-hotel-to-be-opened-in-2025-1485064-2022-06-20',
-  //   // );
-  //   // console.log('omgcheckdata 1', sourceUrlData);
-  //   for (var i = 0; i < sourceUrlData.length; i++) {
-  //     chooseArr.push({
-  //       status: false,
-  //       content: '',
-  //     });
-  //     // console.log('omgcheckdata 2', chooseArr);
-  //     // if()
-  //   }
-  // }, []);
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)}>
       <div className=" mb-6  mx-4 md:mx-8 lg:mx-48">
@@ -331,6 +326,7 @@ const AddSource = () => {
                       <div className="flex justify-between">
                         <input
                           type="text"
+                          // defaultValue={'title'}
                           className="font-bold w-full text-2xl border-0 focus:border-0 focus:ring-0 "
                           placeholder="Title of the idea"
                           {...register(`title[${index}]`, {
@@ -354,6 +350,7 @@ const AddSource = () => {
                       </div>
                       <textarea
                         id="message"
+                        defaultValue={childPostValue[index]?.content}
                         rows="6"
                         className="mt-2  px-4 w-full text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
                         placeholder="Your message..."
@@ -577,6 +574,30 @@ const AddSource = () => {
                   </div>
                 </div>
               )}
+
+              <div
+                className="flex bg-white mt-20 rounded-xl justify-center shadow-md hover:shadow-xl  px-4 py-2"
+                onClick={() => {
+                  setShowAllIdeaModal(true);
+                  // addPost(postCount.length);
+                }}
+              >
+                {/* <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                  />
+                </svg> */}
+                <p className="ml-2">Quic Add Ideas</p>
+              </div>
               {/* modal */}
               {showModal ? (
                 <>
@@ -687,6 +708,7 @@ const AddSource = () => {
                                   parentTitle !== '' &&
                                   parentCategory.name != ''
                                 ) {
+                                  setSourceStatus('yourself');
                                   setparentPostShow(true);
                                   setShowModal(false);
                                 }
@@ -912,7 +934,7 @@ const AddSource = () => {
                                 onClick={async () => {
                                   setSourceUrl('');
                                   console.log('checkurl', sourceUrl);
-                                  await fetchPosrDataBySourceUrl(sourceUrl);
+                                  await fetchPostDataBySourceUrl(sourceUrl);
                                   // getLinkPreview(
                                   //   'https://www.youtube.com/watch?v=MejbOFk7H6c',
                                   // ).then((data) =>
@@ -1010,11 +1032,7 @@ const AddSource = () => {
                         {/*body*/}
                         <div>
                           <div className=" px-6 py-3 flex-auto">
-                            <div className="font-bold">
-                              Rishabh Pant: 5 मैच 58 रन... चाहे जो हो ऋषभ पंत
-                              नहीं होंगे टीम से बाहर, कोच राहुल द्रविड़ ने कर
-                              दिया ऐलान
-                            </div>
+                            <div className="font-bold">{parentTitle}</div>
                             <p className="text-xs">
                               https://www.aajtak.in/sports/cricket/story/t20-world-cup-in-australia-rahul-dravid-on-rishabh-pant-team-india-plan-tspo-1485050-2022-06-20
                               <svg
@@ -1039,6 +1057,48 @@ const AddSource = () => {
                                   <div
                                     key={index}
                                     className="mt-2 border-dashed border-2 border-white-600 p-2 rounded mb-2"
+                                    onClick={() => {
+                                      for (
+                                        var i = 0;
+                                        i < sourceUrlData.length;
+                                        i++
+                                      ) {
+                                        if (index == i) {
+                                          if (
+                                            selectedItems.includes(
+                                              sourceUrlData[i],
+                                            )
+                                          ) {
+                                            for (
+                                              var j = 0;
+                                              j < selectedItems.length;
+                                              j++
+                                            ) {
+                                              if (
+                                                selectedItems[j] ==
+                                                sourceUrlData[i]
+                                              ) {
+                                                selectedItems.splice(j, 1);
+                                              }
+                                            }
+
+                                            console.log(
+                                              'checkclickurl 1',
+                                              i,
+                                              selectedItems,
+                                            );
+                                          } else {
+                                            selectedItems.push(
+                                              sourceUrlData[i],
+                                            );
+                                            console.log(
+                                              'checkclickurl 2',
+                                              selectedItems,
+                                            );
+                                          }
+                                        }
+                                      }
+                                    }}
                                   >
                                     {item}
                                   </div>
@@ -1047,10 +1107,33 @@ const AddSource = () => {
                             )}
                           </div>
                           <div className=" px-6 flex-auto py-3 ">
-                            <button className=" mr-2 px-6 py-2 bg-purpletype font-bold text-white rounded-3xl">
-                              Create idea from 1 paragraph
+                            <button
+                              className=" mr-2 px-6 py-2 bg-purpletype font-bold text-white rounded-3xl bg-yellow-200"
+                              onClick={() => {
+                                // var selectedItems = [];
+                              }}
+                            >
+                              Create idea from paragraph
                             </button>
-                            <button className=" px-6 py-2 bg-graytype font-bold text-white rounded-3xl">
+                            <button
+                              className=" px-6 py-2 bg-graytype font-bold text-white rounded-3xl"
+                              onClick={() => {
+                                // setChildPostValue({ content: selectedItems });
+                                // for (var i = 0; i < selectedItems.length; i++) {
+                                // if (index == i) {
+                                setChildPostValue([
+                                  ...childPostValue,
+                                  { content: selectedItems },
+                                ]);
+
+                                console.log('checkchildpost', childPostValue);
+                                setShowAllIdeaModal(false);
+                                selectedItems = [];
+                                // formData.append();
+                                // }
+                                // }
+                              }}
+                            >
                               Continue
                             </button>
                           </div>
@@ -1063,67 +1146,6 @@ const AddSource = () => {
               ) : null}
 
               {/* card */}
-
-              {/* <div className="bg-white shadow-xl rounded-2xl mt-4 ">
-                <div className="p-4 border-b-2 border-slate-300">
-                  <input
-                    type="file"
-                    className="block m-auto text-sm text-slate-500
-                            file:mr-4 file:py-2 file:px-4
-                            file:rounded-full file:border-0
-                            file:text-sm file:font-semibold
-                            file:bg-violet-50 file:text-violet-700
-                            hover:file:bg-violet-100
-                         "
-                  />
-                </div>
-                <div className="p-4">
-                  <div className="flex justify-between">
-                    <input
-                      type="text"
-                      className="font-bold w-full text-2xl border-0 focus:border-0 focus:ring-0 "
-                      placeholder="Title of the idea"
-                    />
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                      />
-                    </svg>
-                  </div>
-                  <textarea
-                    id="message"
-                    rows="6"
-                    className="mt-2  px-4 w-full text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                    placeholder="Your message..."
-                  ></textarea>
-                  <div className="flex justify-between">
-                    <p></p>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 "
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div> */}
 
               <div
                 className="flex bg-white mt-20 rounded-xl justify-center shadow-md hover:shadow-xl  px-4 py-2"
