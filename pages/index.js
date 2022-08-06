@@ -22,7 +22,7 @@ const Home = () => {
       formData.append('token', token);
       // formData.append('post', 325);
 
-      var response = await fetch('https://fwd.thenwg.xyz/api/get-posts.php', {
+      var response = await fetch(`${process.env.apiUrl}/api/get-posts.php`, {
         method: 'post',
         body: formData,
       });

@@ -8,7 +8,7 @@ module.exports = {
       FOOTER_DESC:
         ' Metadesk provides latest crypto news from all over the world. Get breaking news alerts in field of politics, bollywood, hollywood and other social news by subscribing us.',
     },
-    apiUrl: 'https://fwd.thenwg.xyz',
+    apiUrl: 'https://zakti.thenwg.xyz',
 
     home: {},
 
@@ -27,7 +27,7 @@ module.exports = {
   },
   images: {
     domains: [
-      'https://fwd.thenwg.xyz',
+      'https://zakti.thenwg.xyz',
       'https://www.youtube.com',
       'i0.wp.com',
       'secure.gravatar.com',

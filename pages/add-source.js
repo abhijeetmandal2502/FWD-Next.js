@@ -7,10 +7,12 @@ import { useRouter } from 'next/router';
 import { getLinkPreview, getPreviewFromContent } from 'link-preview-js';
 
 const AddSource = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const token = session?.user?.token;
+
+  console.log('checkuser', status);
 
   const {
     register,
@@ -94,7 +96,7 @@ const AddSource = () => {
   };
 
   const fetchPostDataBySourceUrl = async (sourceUrl) => {
-    var url = 'https://fwd.thenwg.xyz/api/crowl/get-source.php';
+    var url = `${process.env.apiUrl}/api/crowl/get-source.php`;
 
     const formData = new FormData();
     setSourceDataFetching(true);
@@ -128,7 +130,7 @@ const AddSource = () => {
     // setShowAllIdeaModal(true);
 
     setSourceUrldata(result.result);
-    console.log('checkresult', result);
+    // console.log('checkresult', result);
     // .then((response) => {
     //   var result = response.json();
     //   enqueueSnackbar('successfully fetched! ', {
@@ -160,7 +162,7 @@ const AddSource = () => {
     } else if (parentContent == '') {
       setShowPreviewModal(true);
     } else {
-      const url = 'https://fwd.thenwg.xyz/api/create-post.php';
+      const url = `${process.env.apiUrl}/api/create-post.php`;
       // console.log('onsubmit call');
 
       const tempTitle = data.title;

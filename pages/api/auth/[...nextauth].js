@@ -11,7 +11,7 @@ export default NextAuth({
       async authorize(credentials) {
         // console.log('authlogin 1', process.env.authKey);
 
-        const url = 'https://fwd.thenwg.xyz/wp-json/jwt-auth/v1/token';
+        const url = process.env.apiUrl + '/wp-json/jwt-auth/v1/token';
         // `https://fwd.thenwg.xyz/?rest_route=/auth/v1/auth&AUTH_KEY=${process.env.authKey}`;
 
         // console.log('authlogin 2', credentials);

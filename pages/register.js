@@ -33,7 +33,7 @@ const Register = (props) => {
   };
 
   const registersubmit = async (data) => {
-    const url = 'https://fwd.thenwg.xyz/api/create-user.php';
+    const url = process.env.apiUrl + '/api/create-user.php';
 
     const formData = new FormData();
     formData.append('user_login', data.user_login);
